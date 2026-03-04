@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owusu Roland - Player Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      padding-top: 100px;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #7c3aed;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #7c3aed;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    .menu {
+      display: flex;
+    }
+
+    .menu ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: 0.3s;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+
+    .menu ul li a:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.1);
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .srch {
+      width: 180px;
+      height: 35px;
+      background: white;
+      border: 2px solid #7c3aed;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: black;
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 80px;
+      height: 35px;
+      background: #7c3aed;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background-color: #6d28d9;
+    }
+
+    /* Back Button */
+    .back-btn {
+      display: inline-block;
+      background: #7c3aed;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 20px 10px 20px 0;
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #6d28d9;
+      transform: translateX(-5px);
+    }
+
+    .cv-btn {
+      display: inline-block;
+      background: #059669;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 20px 0;
+      transition: all 0.3s;
+    }
+
+    .cv-btn:hover {
+      background: #047857;
+      transform: translateX(5px);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    /* Header Section */
+    .profile-header {
+      background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+      color: white;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .player-photo {
+      width: 200px;
+      height: 280px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .player-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .player-title h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .player-title h2 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    /* Content Grid */
+    .profile-content {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .main-info {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Info Box */
+    .info-box {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .info-box-header {
+      background: #7c3aed;
+      color: white;
+      padding: 15px 20px;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-box-content {
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 700;
+      color: #7c3aed;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      color: #333;
+      font-size: 15px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar-box {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .sidebar-box-header {
+      background: #7c3aed;
+      color: white;
+      padding: 15px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-box-content {
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .achievement-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .achievement-item:before {
+      content: "✓ ";
+      color: #7c3aed;
+      font-weight: 700;
+    }
+
+    .achievement-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-item {
+      padding: 15px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #7c3aed, #5b21b6);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .profile-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px;
+      }
+
+      .player-photo {
+        width: 100%;
+        height: auto;
+      }
+
+      .player-title h1 {
+        font-size: 32px;
+      }
+
+      .player-title h2 {
+        font-size: 18px;
+      }
+
+      .profile-content {
+        grid-template-columns: 1fr;
+        padding: 25px;
+        gap: 20px;
+      }
+
+      .info-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      body {
+        padding-top: 70px;
+      }
+
+      .navbar {
+        padding: 0 15px;
+        height: 70px;
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        transition: left 0.3s ease;
+        padding-top: 50px;
+      }
+
+      .menu.active {
+        left: 0;
+      }
+
+      .menu ul {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .menu ul li a {
+        font-size: 16px;
+        padding: 12px 30px;
+      }
+
+      .search {
+        position: absolute;
+        top: 15px;
+        right: 50px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .srch {
+        width: 140px;
+        height: 30px;
+        font-size: 12px;
+      }
+
+      .btn {
+        width: 70px;
+        height: 30px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-header {
+        padding: 20px;
+      }
+
+      .player-title h1 {
+        font-size: 24px;
+      }
+
+      .player-title h2 {
+        font-size: 16px;
+        color: #f4f4f4;
+      }
+
+      .profile-content {
+        padding: 15px;
+      }
+
+      .info-label {
+        font-size: 12px;
+      }
+
+      .info-value {
+        font-size: 13px;
+      }
+    }
+
+    .player-profile {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .player-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .player-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+    }
+
+    .player-info h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .player-info p {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .available {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .stats-section,
+    .highlights,
+    .progress-report {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      background: #f4f4f4;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Announcement Card */
+    .announcement-card {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      background: linear-gradient(180deg, #ffffff, #fbfbff);
+      border-left: 6px solid #7c3aed;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(12, 16, 50, 0.06);
+      margin: 24px 0;
+    }
+
+    .announcement-img {
+      width: 160px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+
+    .announcement-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .announcement-title {
+      font-size: 20px;
+      color: #1f2937;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .announcement-meta {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .announcement-text {
+      color: #374151;
+      font-size: 15px;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .announcement-cta {
+      display: inline-block;
+      background: #059669;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 6px;
+      width: max-content;
+    }
+
+    @media (max-width: 768px) {
+      .announcement-card { flex-direction: column; align-items: flex-start; }
+      .announcement-img { width: 100%; height: auto; }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/IMG_2209.JPG" alt="Logo">
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu" id="menu">
+      <ul>
+        <li><a href="../main/index.html">HOME</a></li>
+        <li><a href="../main/Service.html">SERVICE</a></li>
+        <li><a href="../main/Player.html">PLAYERS</a></li>
+        <li><a href="../main/Gallery.html">GALLERY</a></li>
+        <li><a href="../main/Contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+    <div class="search">
+      <input type="search" class="srch" id="searchInput" placeholder="Search...">
+      <button class="btn" id="searchBtn">Search</button>
+    </div>
+  </div>
+
+  <a href="../main/Player.html" class="back-btn">🔙 Back to Players</a>
+  <a href="../cvs/Roland.html" class="cv-btn">📄 View CV</a>
+
+  <div class="container">
+    <!-- Header Section -->
+    <div class="profile-header">
+      <img src="../images/Screenshot 2025-03-05 040836.png" alt="Owusu Roland" class="player-photo">
+      <div class="player-title">
+        <h1>OWUSU ROLAND</h1>
+        <h2>DEFENSIVE MIDFIELDER</h2>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="profile-content">
+      <!-- Main Content -->
+      <div class="main-info">
+        <!-- Current Club -->
+        <div class="info-box">
+          <div class="info-box-header">CURRENT CLUB</div>
+          <div class="info-box-content">
+            <div class="info-row">
+              <div class="info-label">Club</div>
+              <div class="info-value">Al-Rayyan Sports Club</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Joined</div>
+              <div class="info-value">2026</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Games Played</div>
+              <div class="info-value">10</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Position</div>
+              <div class="info-value">DEFENSIVE MIDFIELDER</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Goals</div>
+              <div class="info-value">4</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Assists</div>
+              <div class="info-value">9</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous Clubs -->
+        <div class="info-box">
+          <div class="info-box-header">PREVIOUS CLUBS</div>
+          <div class="info-box-content">
+            <div class="info-row">
+              <div class="info-label">Seasons</div>
+              <div class="info-value">2023-2024</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Clubs</div>
+              <div class="info-value">Nationals FC, Memphis FC, Kofi's FC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="info-box">
+          <div class="info-box-header">PERSONAL INFORMATION</div>
+          <div class="info-box-content">
+            <div class="info-row">
+              <div class="info-label">Full Name</div>
+              <div class="info-value">OWUSU ROLAND</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Date of Birth</div>
+              <div class="info-value">22 August 2007</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Nationality</div>
+              <div class="info-value">GHANAIAN</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Position</div>
+              <div class="info-value">DEFENSIVE MIDFIELDER</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Height</div>
+              <div class="info-value">5.8FT</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Weight</div>
+              <div class="info-value">75KG</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Preferred Foot</div>
+              <div class="info-value">RIGHT FOOT</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Market Value</div>
+              <div class="info-value">$8000</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Manager's Email</div>
+              <div class="info-value">solokramanagementfirm1@gmail.com</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Manager's Contact</div>
+              <div class="info-value">+233 59 609 3560</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Announcement -->
+        <div class="info-box">
+          <div class="info-box-header">OFFICIAL ANNOUNCEMENT</div>
+          <div class="info-box-content">
+            <div>
+          <div class="announcement-meta">Official • 10 Feb 2026</div>
+          <h3 class="announcement-title">Roland Owusu Signs with Menalta Sports Agency</h3>
+        </div>
+            <p>Solokra Management Firm is pleased to announce that <strong>Roland Owusu</strong> has officially signed with <strong>Menalta Sports Agency</strong>. The agency will now represent Roland in all club contract negotiations in collaboration with Solokra Management Firm.</p>
+            <div class="announcement-card">
+      <img src="../images/WhatsApp Image Roland.jpeg" class="announcement-img" alt="Roland Owusu Signing">
+      <div class="announcement-body">
+        <p class="announcement-text">This partnership marks a significant milestone in Roland's career, as Menalta Sports Agency is renowned for its expertise in managing and promoting football talents globally. We are confident that this collaboration will open new doors and opportunities for Roland as he continues to develop his career.</p>
+        
+          
+      
+        <p class="announcement-text">We congratulate Roland and look forward to supporting his continued development and success in this next phase of his career.</p>
+        
+      </div>
+    </div>
+
+          </div>
+           <div class="highlights">
+      <h2>Highlight Videos</h2>
+      <iframe src="https://www.youtube.com/embed/samplevideo" allowfullscreen></iframe>
+    </div>
+
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Awards/Achievements -->
+        <div class="sidebar-box">
+          <div class="sidebar-box-header">AWARDS/ACHIEVEMENTS</div>
+          <div class="sidebar-box-content">
+            <div class="achievement-item">Outstanding Performance Award</div>
+            <div class="achievement-item">Team Player Recognition</div>
+            <div class="achievement-item">Consistent Performance Award</div>
+          </div>
+        </div>
+
+        <!-- Skills Rating -->
+        <div class="sidebar-box">
+          <div class="sidebar-box-header">SKILLS RATING</div>
+          <div class="sidebar-box-content">
+            <div class="skill-item">
+              <div class="skill-name">PACE</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">DRIBBLES</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">SPEED</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 78%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">BALL CONTROL</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 82%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">DEFENSIVE SKILLS</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">TEAM WORK</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 88%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+    
+
+   
+    <!-- Training progress chart removed to match template -->
+  </div>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      hamburger.addEventListener('click', function() {
+        menu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      });
+
+      // Close menu when clicking on a link
+      const menuLinks = document.querySelectorAll('.menu ul li a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          menu.classList.remove('active');
+          hamburger.classList.remove('active');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+          menu.classList.remove('active');
+          hamburger.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+  <!-- JavaScript for Search Button -->
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function () {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const pageMap = {
+        'home': 'index.html',
+        'service': 'Service.html',
+        'players': 'Player.html',
+        'gallery': 'Gallery.html',
+        'contact': 'Contact.html'
+      };
+
+      if (query in pageMap) {
+        // Redirect to the corresponding page
+        window.location.href = pageMap[query];
+      } else {
+        alert('Page not found. Please try searching for: Home, Service, Players, Gallery, or Contact.');
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playerPhoto = document.querySelector('.player-photo');
+      if (!playerPhoto) return;
+
+      playerPhoto.style.cursor = 'pointer';
+      playerPhoto.addEventListener('click', function () {
+        createLightbox(playerPhoto.src, playerPhoto.alt || '');
+      });
+    });
+
+    function createLightbox(src, alt) {
+      const lightbox = document.createElement('div');
+      lightbox.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        cursor: pointer;
+      `;
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt;
+      img.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      `;
+
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      lightbox.addEventListener('click', () => {
+        if (document.body.contains(lightbox)) {
+          document.body.removeChild(lightbox);
+        }
+      });
+
+      document.addEventListener('keydown', function escapeHandler(e) {
+        if (e.key === 'Escape') {
+          if (document.body.contains(lightbox)) {
+            document.body.removeChild(lightbox);
+          }
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Owusu Roland - Player Profile</title>
+  <style>
+    /* Same CSS as original template */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Owusu Roland - Player Profile</h1>
+    </header>
+    
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Name:</strong> Owusu Roland</li>
+        <li><strong>Date of Birth:</strong> 22 August 2007</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Position:</strong> Defensive Midfielder (Position 6)</li>
+        <li><strong>Current Club:</strong> Al-Rayyan Sports Club</li>
+        <li><strong>Previous Clubs:</strong> Nationals FC, Memphis FC, Kofi's FC</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+    
+    <section class="physical-attributes">
+      <h2>Physical Attributes</h2>
+      <ul>
+        <li><strong>Height:</strong> 1.5 m</li>
+        <li><strong>Weight:</strong> 57.4 kg</li>
+        <li><strong>Preferred Foot:</strong> Mostly Right-Footed (also capable with left)</li>
+        <li><strong>Stamina:</strong> Excellent endurance, maintains high performance for full 90 minutes</li>
+      </ul>
+    </section>
+    
+    <section class="playing-style">
+      <h2>Playing Style & Tactical Traits</h2>
+      <ul>
+        <li><strong>Role on the Field:</strong> Defensive Midfielder</li>
+        <li>Controls game tempo through strategic positioning and defensive awareness</li>
+        <li><strong>Tactical Traits:</strong> Excellent ball distribution, pressure-resistant control, and driving runs through midfield</li>
+        <li><strong>Technical Skills:</strong> Powerful and accurate long-range shooting, strong tackling ability</li>
+      </ul>
+    </section>
+    
+    <section class="performance">
+      <h2>Performance This Season</h2>
+      <ul>
+        <li><strong>Games Played:</strong> 10 (Started 6)</li>
+        <li><strong>Goals Scored:</strong> 4 (including long-range strikes)</li>
+        <li><strong>MVP Awards:</strong> 3</li>
+        <li>Consistent performer in both defensive and offensive roles</li>
+      </ul>
+    </section>
+    
+    <section class="strengths">
+      <h2>Strengths</h2>
+      <ul>
+        <li>Exceptional positioning and defensive awareness</li>
+        <li>Superior ball distribution under pressure</li>
+        <li>Effective driving runs through midfield channels</li>
+        <li>Powerful and accurate long-range shooting</li>
+      </ul>
+    </section>
+    
+    <section class="summary">
+      <h2>Summary</h2>
+      <p>
+        Owusu Roland is a dynamic defensive midfielder known for his tactical intelligence and technical precision. 
+        With 4 goals and 3 MVP awards last season, he has demonstrated exceptional ability in both defensive duties 
+        and attacking contributions. His powerful long-range strikes and 90-minute stamina make him a valuable asset 
+        to Kofi's FC, with aspirations to represent Ghana at international level through continued development of 
+        his endurance and tactical awareness.
+      </p>
+    </section>
+    
+    <img src="../images/Screenshot 2025-03-05 040836.png" alt="Owusu Roland in action" class="profile-image" />
+    
+    <a href="/portfolios/Player2_port.html" class="back-button">← Go Back</a>
+
+    <!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- PDF Download Button -->
+<div style="text-align:center; margin:20px;">
+  <button id="download-pdf" class="back">📥 Download as PDF</button>
+</div>
+
+<script>
+  document.getElementById("download-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "pt", "a4");
+
+    // Select the container section (the main content)
+    const element = document.querySelector(".container");
+
+    // Convert HTML to PDF with working settings
+    doc.html(element, {
+      callback: function (pdf) {
+        pdf.save("Owusu_Roland_Profile.pdf");
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 555,
+      windowWidth: 900,
+      html2canvas: {
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }
+    });
+  });
+</script>
+
+  </div>
+</body>
+</html>

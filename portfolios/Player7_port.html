@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nsobila Martha - Player Profile</title>
+<style>
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+  background:#f8f9fa;
+  color:#333;
+  padding:20px;
+  padding-top:100px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content: flex-start;  
+  gap: 40px; 
+  padding:0 40px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 10px rgba(0,0,0,.1);
+  z-index:100;
+}
+
+.navbar .logo img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:2px solid #7c3aed;
+  object-fit:cover;
+}
+
+/* Desktop Menu */
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:25px;
+}
+
+.nav-links li a{
+  text-decoration:none;
+  font-weight:600;
+  color:#333;
+  padding:8px 15px;
+  border-radius:5px;
+  transition:0.3s;
+}
+
+.nav-links li a:hover{
+  background:rgba(124,58,237,0.1);
+  color:#7c3aed;
+}
+
+/* Hamburger Menu */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:5px;
+}
+
+.hamburger div{
+  width:25px;
+  height:3px;
+  background:#333;
+  border-radius:3px;
+  transition:0.3s;
+}
+
+/* Sidebar */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-250px;
+  width:250px;
+  height:100%;
+  background:#fff;
+  box-shadow:2px 0 10px rgba(0,0,0,0.1);
+  padding:80px 20px 20px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  transition:0.3s;
+  z-index:200;
+}
+
+.sidebar a{
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+  padding:10px;
+  border-radius:5px;
+  transition:0.3s;
+}
+
+.sidebar a:hover{
+  background:rgba(124,58,237,0.1);
+  color:#7c3aed;
+}
+
+/* ===== BUTTONS ===== */
+.back-btn, .cv-btn{
+  display:inline-block;
+  padding:10px 25px;
+  border-radius:5px;
+  text-decoration:none;
+  font-weight:600;
+  margin:10px 10px 20px 0;
+  transition:0.3s;
+}
+
+.back-btn{
+  background:#7c3aed;
+  color:#fff;
+}
+
+.back-btn:hover{
+  background:#5b21b6;
+}
+
+.cv-btn{
+  background:#059669;
+  color:#fff;
+}
+
+.cv-btn:hover{
+  background:#047857;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1200px;
+  margin:auto;
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+/* ===== HEADER ===== */
+.profile-header{
+  background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  color:#fff;
+  padding:40px;
+  display:grid;
+  grid-template-columns:250px 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+.player-photo{
+  width:200px;
+  height:260px;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+.player-title h1{
+  font-size:40px;
+}
+
+.player-title h2{
+  font-size:20px;
+  opacity:.9;
+}
+
+.status{
+  background:#059669;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:5px;
+  font-weight:700;
+  display:inline-block;
+  margin-top:10px;
+}
+
+.player-title p{
+  margin-top:10px;
+  line-height:1.6;
+}
+
+/* ===== CONTENT ===== */
+.profile-content{
+  display:grid;
+  grid-template-columns:1fr 350px;
+  gap:30px;
+  padding:40px;
+}
+
+/* ===== INFO BOX ===== */
+.info-box{
+  border-radius:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  margin-bottom:30px;
+  overflow:hidden;
+}
+
+.info-box-header{
+  background:#7c3aed;
+  color:#fff;
+  padding:15px;
+  font-weight:700;
+}
+
+.info-box-content{
+  background:#fafafa;
+  padding:20px;
+}
+
+.info-row{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  padding:10px 0;
+  border-bottom:1px solid #ddd;
+}
+
+.info-row:last-child{
+  border-bottom:none;
+}
+
+.info-label{
+  font-weight:700;
+  color:#7c3aed;
+}
+
+ul{
+  list-style:none;
+  padding-left:0;
+}
+
+ul li{
+  margin-bottom:8px;
+  padding-left:5px;
+  font-size:14px;
+}
+
+/* ===== TRAINING BAR ===== */
+.skill-item{
+  margin-bottom:15px;
+}
+
+.skill-name{
+  font-weight:600;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.skill-bar{
+  width:100%;
+  height:8px;
+  background:#e0e0e0;
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.skill-progress{
+  height:100%;
+  background:linear-gradient(90deg,#7c3aed,#5b21b6);
+  border-radius:4px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .nav-links{
+    display:none;
+  }
+  .hamburger{
+    display:flex;
+  }
+  .profile-header,
+  .profile-content{
+    grid-template-columns:1fr;
+  }
+  .player-photo{
+    width:150px;
+    height:200px;
+    margin:auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo"><img src="../images/IMG_2209.JPG"alt="Nsobila Martha"></div>
+  <ul class="nav-links">
+    <li><a href="../main/index.html">HOME</a></li>
+    <li><a href="../main/Service.html">SERVICE</a></li>
+    <li><a href="../main/Player.html">PLAYERS</a></li>
+    <li><a href="../main/Gallery.html">GALLERY</a></li>
+    <li><a href="../main/Contact.html">CONTACT</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleSidebar()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <a href="../main/index.html">HOME</a>
+  <a href="../main/Service.html">SERVICE</a>
+  <a href="../main/Player.html">PLAYERS</a>
+  <a href="../main/Gallery.html">GALLERY</a>
+  <a href="../main/Contact.html">CONTACT</a>
+</div>
+
+<!-- NAVIGATION BUTTONS -->
+<a href="../main/Player.html" class="back-btn">🔙 Back</a>
+<a href="../cvs/Martha.html" class="cv-btn">📄 View CV</a>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="profile-header">
+  <img src="../images/Mathar.png" class="player-photo" alt="Nsobila Martha">
+  <div class="player-title">
+    <h1>NSOBILA MARTHA</h1>
+    <h2>CENTRAL DEFENDER</h2>
+    <span class="status">Available for Transfer</span>
+    <p>
+      Nationality: <strong>Ghanaian</strong><br>
+      Date of Birth: <strong>10th April 2004</strong><br>
+      Preferred Foot: <strong>Right</strong><br>
+      Current Club: <strong>Dreamz Ladies</strong><br>
+      Previous Club: <strong>Hassport Ladies</strong><br>
+      Email: <strong><a href="mailto:solokramanagementfirm1@gmail.com">solokramanagementfirm1@gmail.com</a></strong>
+    </p>
+  </div>
+</div>
+
+<!-- PROFILE CONTENT -->
+<div class="profile-content">
+
+  <!-- LEFT COLUMN -->
+  <div>
+    <div class="info-box">
+      <div class="info-box-header">PLAYER PROFILE</div>
+      <div class="info-box-content">
+        <p>
+          A disciplined central defender known for her defensive awareness,
+          strong tackling, and leadership at the back. Nsobila excels in
+          organizing the defense and providing stability to the team while
+          contributing to attacks when needed.
+        </p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-header">CAREER STATISTICS</div>
+      <div class="info-box-content">
+        <div class="info-row">
+          <div class="info-label">Hassport Ladies</div>
+          <div>104 Matches | 34 Goals | 16 Assists</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Dreamz Ladies</div>
+          <div>15 Matches | 3 Goals | 6 Assists</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-header">KEY STRENGTHS</div>
+      <div class="info-box-content">
+        <ul>
+          <li>✔ Excellent tackling and aerial ability</li>
+          <li>✔ Strong game reading and positioning</li>
+          <li>✔ Accurate passing and distribution</li>
+          <li>✔ Vocal leader and organizer in defense</li>
+          <li>✔ High work rate and composure under pressure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-header">EDUCATION</div>
+      <div class="info-box-content">
+        <p>Kwame Nkrumah University of Science and Technology (KNUST)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <aside>
+    <div class="info-box">
+      <div class="info-box-header">TRAINING PROGRESS</div>
+      <div class="info-box-content">
+        <div class="skill-item">
+          <div class="skill-name">Week 1</div>
+          <div class="skill-bar"><div class="skill-progress" style="width:65%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Week 2</div>
+          <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Week 3</div>
+          <div class="skill-bar"><div class="skill-progress" style="width:82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Week 4</div>
+          <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+</div>
+
+<script>
+function toggleSidebar(){
+  const sidebar = document.getElementById('sidebar');
+  if(sidebar.style.left === '0px'){
+    sidebar.style.left = '-250px';
+  } else {
+    sidebar.style.left = '0px';
+  }
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const playerPhoto = document.querySelector('.player-photo');
+  if (!playerPhoto) return;
+
+  playerPhoto.style.cursor = 'pointer';
+  playerPhoto.addEventListener('click', function () {
+    createLightbox(playerPhoto.src, playerPhoto.alt || '');
+  });
+});
+
+function createLightbox(src, alt) {
+  const lightbox = document.createElement('div');
+  lightbox.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+  `;
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.style.cssText = `
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  `;
+
+  lightbox.appendChild(img);
+  document.body.appendChild(lightbox);
+
+  lightbox.addEventListener('click', () => {
+    if (document.body.contains(lightbox)) {
+      document.body.removeChild(lightbox);
+    }
+  });
+
+  document.addEventListener('keydown', function escapeHandler(e) {
+    if (e.key === 'Escape') {
+      if (document.body.contains(lightbox)) {
+        document.body.removeChild(lightbox);
+      }
+      document.removeEventListener('keydown', escapeHandler);
+    }
+  });
+}
+</script>
+
+</body>
+</html>

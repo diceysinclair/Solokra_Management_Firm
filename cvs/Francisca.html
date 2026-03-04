@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Francisca Kwarteng - Player Profile</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 30%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Francisca Kwarteng - Player Profile</h1>
+    </header>
+    
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Name:</strong> Francisca Kwarteng</li>
+        <li><strong>Date of Birth:</strong> 7th April 2002</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Height:</strong> 1.7m</li>
+        <li><strong>Preferred Foot:</strong> Right</li>
+        <li><strong>Position:</strong> Right Back, Defensive Midfielder</li>
+        <li><strong>Current Club:</strong> Ashtown Ladies</li>
+        <li><strong>Agent/Management:</strong> Solokra Management Firm</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+    
+    <section class="player-profile">
+      <h2>Player Profile</h2>
+      <p>
+        A versatile and disciplined footballer known for strong defensive awareness, tactical intelligence, and excellent ball distribution. Excels in both defensive and midfield roles, offering composure under pressure, effective tackling, and precise passing. A hardworking team player with a strong commitment to success.
+      </p>
+    </section>
+    
+    <section class="football-career">
+      <h2>Football Career</h2>
+      <h3>Ashtown Ladies (Current Club)</h3>
+      <ul>
+        <li>Competing at a high level and contributing to the team's defensive and midfield stability.</li>
+      </ul>
+      
+      <h3>Soccer Angels (2020–2024)</h3>
+      <ul>
+        <li>Played 8 games, scoring 2 goals and providing 3 assists.</li>
+        <li>Registered player with a significant impact in both defensive and midfield roles.</li>
+      </ul>
+      
+      <h3>Oforikrom Ladies (2015–2017)</h3>
+      <ul>
+        <li>Played without a registration card but gained valuable early experience in competitive football.</li>
+      </ul>
+    </section>
+    
+    <section class="achievements">
+      <h2>Achievements & Highlights</h2>
+      <ul>
+        <li><strong>GUSA Champion (2022):</strong> Key player in winning the Ghana University Sports Association (GUSA) tournament with KNUST.</li>
+      </ul>
+    </section>
+    
+    <section class="skills-strengths">
+      <h2>Skills & Strengths</h2>
+      <ul>
+        <li><strong>Defensive Skills:</strong> Strong tackling, interception, and marking.</li>
+        <li><strong>Tactical Awareness:</strong> Positioning, reading the game, and quick decision-making.</li>
+        <li><strong>Technical Ability:</strong> Accurate passing, ball control, and composure under pressure.</li>
+        <li><strong>Physical Attributes:</strong> Stamina, speed, and strength in duels.</li>
+        <li><strong>Mental Strength:</strong> Leadership, teamwork, and resilience in high-pressure situations.</li>
+      </ul>
+    </section>
+    
+    <section class="education">
+      <h2>Education & Certifications</h2>
+      <ul>
+        <li>Kwame Nkrumah University of Science and Technology (KNUST)</li>
+      </ul>
+    </section>
+    
+    <section class="contact">
+      <h2>Contact Information</h2>
+      <ul>
+        <li><strong>Phone:</strong> 0599395962</li>
+        <li><strong>Email:</strong> Faizasule@icloud.com</li>
+        <li><strong>References:</strong> Available upon request</li>
+      </ul>
+    </section>
+    
+    <img src="../images/Francisca.png" alt="Francisca Kwarteng in action" class="profile-image" />
+    
+    <a href="/portfolios/Player5_port.html" class="back-button">← Go Back</a>
+
+    <!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- PDF Download Button -->
+<div style="text-align:center; margin:20px;">
+  <button id="download-pdf" class="back">📥 Download as PDF</button>
+</div>
+
+<script>
+  document.getElementById("download-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "pt", "a4");
+
+    // Select the container section (the main content)
+    const element = document.querySelector(".container");
+
+    // Convert HTML to PDF with working settings
+    doc.html(element, {
+      callback: function (pdf) {
+        pdf.save("Francisca_Kwarteng_Profile.pdf");
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 555,
+      windowWidth: 900,
+      html2canvas: {
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }
+    });
+  });
+</script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nsobila Martha - Player Profile</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 30%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Nsobila Martha - Player Profile</h1>
+    </header>
+    
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Full Name:</strong> Nsobila Martha</li>
+        <li><strong>Date of Birth:</strong> 10th April 2004</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Preferred Foot:</strong> Right</li>
+        <li><strong>Position:</strong> Central Defender</li>
+        <li><strong>Current Club:</strong> Dreamz Ladies</li>
+        <li><strong>Previous Club:</strong> Hassport Ladies</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+    
+    <section class="profile">
+      <h2>Player Profile</h2>
+      <p>
+        A disciplined central defender known for her defensive awareness, strong tackling, and leadership at the back. Nsobila excels in organizing the defense and providing stability to the team while contributing to attacks when needed.
+      </p>
+    </section>
+    
+    <section class="career-stats">
+      <h2>Career Statistics</h2>
+      <ul>
+        <li><strong>Hassport Ladies:</strong> 104 Matches | 34 Goals | 16 Assists</li>
+        <li><strong>Dreamz Ladies:</strong> 15 Matches | 3 Goals | 6 Assists</li>
+      </ul>
+    </section>
+    
+    <section class="strengths">
+      <h2>Key Strengths</h2>
+      <ul>
+        <li>Excellent tackling and aerial ability</li>
+        <li>Strong game reading and positioning</li>
+        <li>Accurate passing and distribution</li>
+        <li>Vocal leader and organizer in defense</li>
+        <li>High work rate and composure under pressure</li>
+      </ul>
+    </section>
+    
+    <section class="education">
+      <h2>Education</h2>
+      <p>Kwame Nkrumah University of Science and Technology (KNUST)</p>
+    </section>
+    
+    
+
+    <img src="../images/Mathar.png" alt="Nsobila Martha in action" class="profile-image" />
+
+    <a href="/portfolios/Player7_port.html" class="back-button">← Go Back</a>
+
+    <!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- PDF Download Button -->
+<div style="text-align:center; margin:20px;">
+  <button id="download-pdf" class="back">📥 Download as PDF</button>
+</div>
+
+<script>
+  document.getElementById("download-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "pt", "a4");
+
+    // Select the container section (the main content)
+    const element = document.querySelector(".container");
+
+    // Convert HTML to PDF with working settings
+    doc.html(element, {
+      callback: function (pdf) {
+        pdf.save("Nsobila_Martha_Profile.pdf");
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 555,
+      windowWidth: 900,
+      html2canvas: {
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }
+    });
+  });
+</script>
+
+  </div>
+</body>
+</html>

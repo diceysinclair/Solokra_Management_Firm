@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christopher Amoah - Player Profile</title>
+  <style>
+    /* Same CSS as original template */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 30%; /* Reduced from 100% to 60% */
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Christopher Amoah - Player Profile</h1>
+    </header>
+    
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Name:</strong> Christopher Amoah</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Preferred Positions:</strong> Right-winger, Right-back</li>
+        <li><strong>Current Team:</strong> Adams FC</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+    
+    <section class="physical-attributes">
+      <h2>Physical Attributes</h2>
+      <ul>
+        <li><strong>Height:</strong> 1.6 m</li>
+        <li><strong>Weight:</strong> 56 kg</li>
+      </ul>
+    </section>
+    
+    <section class="playing-style">
+      <h2>Player Traits & Strengths</h2>
+      <ul>
+        <li><strong>Versatility:</strong> Excels both as an attacking right-winger and as a defensive right-back, showcasing adaptability and tactical awareness.</li>
+        <li><strong>Speed and Agility:</strong> Known for quick acceleration and the ability to maneuver in tight spaces, making him a reliable winger in offensive plays.</li>
+        <li><strong>Defensive Solidity:</strong> Exhibits strong tackling skills and positional awareness, contributing effectively to the team's defense.</li>
+        <li><strong>Crossing Ability:</strong> Delivers precise crosses from the wing, setting up scoring opportunities for teammates.</li>
+        <li><strong>Stamina:</strong> Maintains a high work rate, performing consistently for the full match duration.</li>
+      </ul>
+    </section>
+    
+    <section class="performance">
+      <h2>2024 Season Stats</h2>
+      <ul>
+        <li><strong>Games Played:</strong> 20</li>
+        <li><strong>Assists:</strong> 12</li>
+        <li><strong>Goals Scored:</strong> 3</li>
+        <li><strong>Role:</strong> Starter for Adams FC</li>
+      </ul>
+    </section>
+    
+    <section class="key-contributions">
+      <h2>Key Contributions</h2>
+      <ul>
+        <li><strong>Playmaking:</strong> His 12 assists highlight his ability to create goal-scoring opportunities.</li>
+        <li><strong>Goal Scoring:</strong> Chipped in with 3 goals, demonstrating his offensive support.</li>
+        <li><strong>Consistency:</strong> A dependable starter delivering significant contributions on both ends of the pitch.</li>
+      </ul>
+    </section>
+    
+    <section class="summary">
+      <h2>Summary</h2>
+      <p>
+        Christopher Amoah is a versatile player known for his dynamic playing style—fluent in both attacking and defensive roles. His blend of speed, precise crossing ability, and consistent performance as a starter for Adams FC positions him as a vital asset to his team.
+      </p>
+    </section>
+    
+    <img src="../images/Amoah.jpg" alt="Christopher Amoah in action" class="profile-image" />
+    
+    <a href="/portfolios/Player4_port.html" class="back-button">← Go Back</a>
+    <!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- PDF Download Button -->
+<div style="text-align:center; margin:20px;">
+  <button id="download-pdf" class="back">📥 Download as PDF</button>
+</div>
+
+<script>
+  document.getElementById("download-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "pt", "a4");
+
+    // Select the container section (the main content)
+    const element = document.querySelector(".container");
+
+    // Convert HTML to PDF with working settings
+    doc.html(element, {
+      callback: function (pdf) {
+        pdf.save("Christopher_Amoah_Profile.pdf");
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 555,
+      windowWidth: 900,
+      html2canvas: {
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }
+    });
+  });
+</script>
+
+  </div>
+</body>
+</html>

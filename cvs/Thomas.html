@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thomas Blay - Player Profile</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Thomas Blay - Player Profile</h1>
+    </header>
+    
+    <!-- Personal Information -->
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Full Name:</strong> Thomas Blay</li>
+        <li><strong>Date of Birth:</strong> 28th August 2004</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Playing Position(s):</strong> Center Back, Right Back</li>
+        <li><strong>Current Club/Team:</strong> Memphis FC</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+        <li>
+          <strong>Previous Clubs/Teams:</strong>
+          <ul>
+            <li>Real Zalagoza</li>
+            <li>Blessed Kickers FC</li>
+          </ul>
+        </li>
+        <li><strong>Level of Experience:</strong> Amateur</li>
+      </ul>
+    </section>
+    
+    <!-- Contact Information -->
+    <section class="contact-info">
+      <h2>Contact Information</h2>
+      <ul>
+        <li><strong>Email:</strong> solokramanagementfirm1@gmail.com</li>
+        <li><strong>Phone:</strong> +233 599 827 891</li>
+        <li><strong>Address:</strong> Box 12, Boako, Ghana</li>
+      </ul>
+    </section>
+    
+    <!-- Player Performance -->
+    <section class="performance">
+      <h2>Player Performance (Last Season)</h2>
+      <ul>
+        <li><strong>Matches Played:</strong> 14</li>
+        <li><strong>Clean Sheets:</strong> 14</li>
+        <li><strong>Goals Scored:</strong> 2</li>
+        <li><strong>Assists:</strong> 1</li>
+        <li><strong>MVP Awards:</strong> 5</li>
+      </ul>
+    </section>
+    
+    <!-- Player Attributes -->
+    <section class="attributes">
+      <h2>Player Attributes</h2>
+      <ul>
+        <li><strong>Position Versatility:</strong> Effective as both Center Back and Right Back.</li>
+        <li>
+          <strong>Strengths:</strong>
+          <ul>
+            <li>Solid tackling and marking skills</li>
+            <li>Good positional awareness and reading of the game</li>
+            <li>Strong aerial ability in both defense and attack</li>
+            <li>Leadership qualities and strong communication on the field</li>
+            <li>Excellent work ethic and stamina</li>
+          </ul>
+        </li>
+        <li><strong>Style of Play:</strong> Commanding defender who combines defensive reliability with occasional attacking contributions, effective in set-piece situations.</li>
+      </ul>
+    </section>
+    
+    <!-- Key Highlights -->
+    <section class="highlights">
+      <h2>Key Highlights</h2>
+      <ul>
+        <li>Maintained 100% clean sheet rate across 14 matches.</li>
+        <li>Scored 2 goals and contributed 1 assist, showcasing offensive impact.</li>
+        <li>Won 5 MVP Awards, recognizing consistent top performances.</li>
+      </ul>
+    </section>
+    
+    <!-- Profile Image -->
+    <img src="../images/thomas.png" alt="Thomas Blay in action" class="profile-image" />
+    
+    <!-- Back Button -->
+    <a href="/portfolios/Player3_Port.html" class="back-button">← Go Back</a>
+
+    <!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- PDF Download Button -->
+<div style="text-align:center; margin:20px;">
+  <button id="download-pdf" class="back">📥 Download as PDF</button>
+</div>
+
+<script>
+  document.getElementById("download-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "pt", "a4");
+
+    // Select the container section (the main content)
+    const element = document.querySelector(".container");
+
+    // Convert HTML to PDF with working settings
+    doc.html(element, {
+      callback: function (pdf) {
+        pdf.save("Thomas_Blay_Profile.pdf");
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 555,
+      windowWidth: 900,
+      html2canvas: {
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }
+    });
+  });
+</script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antwi Clifford - Player Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      padding-top: 100px;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #7c3aed;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #7c3aed;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    .menu {
+      display: flex;
+    }
+
+    .menu ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: 0.3s;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+
+    .menu ul li a:hover {
+      color: #7c3aed;
+      background: rgba(124, 58, 237, 0.1);
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .srch {
+      width: 180px;
+      height: 35px;
+      background: white;
+      border: 2px solid #7c3aed;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: black;
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 80px;
+      height: 35px;
+      background: #7c3aed;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background-color: #6d28d9;
+    }
+
+    /* Back Button */
+    .back-btn {
+      display: inline-block;
+      background: #7c3aed;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 20px 10px 20px 0;
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #6d28d9;
+      transform: translateX(-5px);
+    }
+
+    .cv-btn {
+      display: inline-block;
+      background: #059669;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 20px 0;
+      transition: all 0.3s;
+    }
+
+    .cv-btn:hover {
+      background: #047857;
+      transform: translateX(5px);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    /* Header Section */
+    .profile-header {
+      background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+      color: white;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .player-photo {
+      width: 200px;
+      height: 280px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .player-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .player-title h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .player-title h2 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    /* Content Grid */
+    .profile-content {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .main-info {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Info Box */
+    .info-box {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .info-box-header {
+      background: #7c3aed;
+      color: white;
+      padding: 15px 20px;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-box-content {
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 700;
+      color: #7c3aed;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      color: #333;
+      font-size: 15px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar-box {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .sidebar-box-header {
+      background: #7c3aed;
+      color: white;
+      padding: 15px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-box-content {
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .achievement-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .achievement-item:before {
+      content: "✓ ";
+      color: #7c3aed;
+      font-weight: 700;
+    }
+
+    .achievement-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-item {
+      padding: 15px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #7c3aed, #5b21b6);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .profile-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px;
+      }
+
+      .player-photo {
+        width: 100%;
+        height: auto;
+      }
+
+      .player-title h1 {
+        font-size: 32px;
+      }
+
+      .player-title h2 {
+        font-size: 18px;
+      }
+
+      .profile-content {
+        grid-template-columns: 1fr;
+        padding: 25px;
+        gap: 20px;
+      }
+
+      .info-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .navbar {
+        height: 70px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(255, 255, 255, 0.95);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        transition: left 0.3s ease;
+        padding-top: 50px;
+      }
+
+      .menu.active {
+        left: 0;
+      }
+
+      .menu ul {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .menu ul li a {
+        font-size: 16px;
+        padding: 12px 30px;
+      }
+
+      .search {
+        position: absolute;
+        top: 15px;
+        right: 50px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .srch {
+        width: 140px;
+        height: 30px;
+        font-size: 12px;
+      }
+
+      .btn {
+        width: 70px;
+        height: 30px;
+        font-size: 12px;
+      }
+
+      body {
+        padding-top: 70px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-header {
+        padding: 20px;
+      }
+
+      .player-title h1 {
+        font-size: 24px;
+      }
+
+      .player-title h2 {
+        font-size: 16px;
+      }
+
+      .profile-content {
+        padding: 15px;
+      }
+
+      .info-label {
+        font-size: 12px;
+      }
+
+      .info-value {
+        font-size: 13px;
+      }
+    }
+    /* Announcement & highlight sizing */
+    .announcement-img { max-width: 160px; width: 100%; height: auto; border-radius: 8px; object-fit: cover; }
+    .announcement-card { max-width: 100%; }
+    .highlights iframe { width: 100%; max-width: 640px; height: 360px; border-radius: 8px; display: block; margin: 0 auto; }
+    @media (max-width: 768px) { .highlights iframe { height: 220px; } .announcement-img { max-width: 100%; } }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/IMG_2209.JPG" alt="Logo">
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu" id="menu">
+      <ul>
+        <li><a href="../main/index.html">HOME</a></li>
+        <li><a href="../main/Service.html">SERVICE</a></li>
+        <li><a href="../main/Player.html">PLAYERS</a></li>
+        <li><a href="../main/Gallery.html">GALLERY</a></li>
+        <li><a href="../main/Contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+    <div class="search">
+      <input type="search" class="srch" id="searchInput" placeholder="Search...">
+      <button class="btn" id="searchBtn">Search</button>
+    </div>
+  </div>
+
+  <a href="../main/Player.html" class="back-btn">🔙 Back to Players</a>
+  <a href="../cvs/Clifford.html" class="cv-btn">📄 View CV</a>
+
+  <div class="container">
+    <!-- Header Section -->
+    <div class="profile-header">
+      <img src="../images/Screenshot 2025-03-05 040809.png" alt="Antwi Clifford" class="player-photo">
+      <div class="player-title">
+        <h1>ANTWI CLIFFORD</h1>
+        <h2>CENTRAL MIDFIELDER</h2>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="profile-content">
+      <!-- Main Content -->
+      <div class="main-info">
+        <!-- Current Club -->
+        <div class="info-box">
+          <div class="info-box-header">CURRENT CLUB</div>
+          <div class="info-box-content">
+            <div class="info-row">
+              <div class="info-label">Club</div>
+              <div class="info-value">Kumasi Angels</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Joined</div>
+              <div class="info-value">2024</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Games Played</div>
+              <div class="info-value">16</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Position</div>
+              <div class="info-value">CENTRAL MIDFIELDER</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Goals</div>
+              <div class="info-value">4</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Assists</div>
+              <div class="info-value">9</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Cards</div>
+              <div class="info-value">1 YELLOW CARD / 0 RED CARD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous Clubs -->
+        <div class="info-box">
+          <div class="info-box-header">PREVIOUS CLUBS</div>
+          <div class="info-box-content">
+            <div class="info-row">
+              <div class="info-label">Seasons</div>
+              <div class="info-value">2022</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Clubs</div>
+              <div class="info-value">SAINT FC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="info-box">
+          <div class="info-box-header">PERSONAL INFORMATION</div>
+          <div class="info-box-content">
+            <div class="info-row">
+              <div class="info-label">Full Name</div>
+              <div class="info-value">ANTWI CLIFFORD </div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Date of Birth</div>
+              <div class="info-value">8th August 2005</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Nationality</div>
+              <div class="info-value">GHANAIAN</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">State</div>
+              <div class="info-value">ACCRA</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Position</div>
+              <div class="info-value">CENTRAL MIDFIELDER</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Height</div>
+              <div class="info-value">5.7FT</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Weight</div>
+              <div class="info-value">70KG</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Preferred Foot</div>
+              <div class="info-value">RIGHT FOOT</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Alternative Position</div>
+              <div class="info-value">ATTACKING MIDFIELDER</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Spoken Language</div>
+              <div class="info-value">ENGLISH AND FRENCH</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Manager's Email</div>
+              <div class="info-value">solokramanagementfirm1@gmail.com</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Manager's Contact</div>
+              <div class="info-value">+233 59 609 3560</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Awards/Achievements -->
+        <div class="sidebar-box">
+          <div class="sidebar-box-header">AWARDS/ACHIEVEMENTS</div>
+          <div class="sidebar-box-content">
+            <div class="achievement-item">Most Valuable Player Of Unity Cup</div>
+            <div class="achievement-item">Fair Play Player Award Of A Championship Ship</div>
+            <div class="achievement-item">Player Of The Week Jogador</div>
+          </div>
+        </div>
+
+        <!-- Skills Rating -->
+        <div class="sidebar-box">
+          <div class="sidebar-box-header">SKILLS RATING</div>
+          <div class="sidebar-box-content">
+            <div class="skill-item">
+              <div class="skill-name">PACE</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">DRIBBLES</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">SPEED</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">BALL CONTROL</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 88%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">SHOOTING POWER</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 72%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">TEAM WORK</div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      hamburger.addEventListener('click', function() {
+        menu.classList.toggle('active');
+      });
+
+      const menuLinks = document.querySelectorAll('.menu ul li a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          menu.classList.remove('active');
+        });
+      });
+
+      document.addEventListener('click', function(event) {
+        if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+          menu.classList.remove('active');
+        }
+      });
+    });
+
+    document.getElementById('searchBtn').addEventListener('click', function () {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const pageMap = {
+        'home': '../main/index.html',
+        'service': '../main/Service.html',
+        'players': '../main/Player.html',
+        'gallery': '../main/Gallery.html',
+        'contact': '../main/Contact.html'
+      };
+  
+      if (query in pageMap) {
+        window.location.href = pageMap[query];
+      } else {
+        alert('Page not found. Please try: Home, Service, Players, Gallery, or Contact');
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const playerPhoto = document.querySelector('.player-photo');
+      if (!playerPhoto) return;
+
+      playerPhoto.style.cursor = 'pointer';
+      playerPhoto.addEventListener('click', function () {
+        createLightbox(playerPhoto.src, playerPhoto.alt || '');
+      });
+    });
+
+    function createLightbox(src, alt) {
+      const lightbox = document.createElement('div');
+      lightbox.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        cursor: pointer;
+      `;
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt;
+      img.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      `;
+
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      lightbox.addEventListener('click', () => {
+        if (document.body.contains(lightbox)) {
+          document.body.removeChild(lightbox);
+        }
+      });
+
+      document.addEventListener('keydown', function escapeHandler(e) {
+        if (e.key === 'Escape') {
+          if (document.body.contains(lightbox)) {
+            document.body.removeChild(lightbox);
+          }
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

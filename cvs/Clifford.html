@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antwi Clifford - Player Profile</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Antwi Clifford - Player Profile</h1>
+    </header>
+    
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Name:</strong> Antwi Clifford</li>
+        <li><strong>Date of Birth:</strong> 8th August 2005</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Position:</strong> Central Midfielder</li>
+        <li><strong>Team:</strong> Kumasi Angels</li>
+        <li><strong>Years with Team:</strong> 2 sessions</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+    
+    <section class="physical-attributes">
+      <h2>Physical Attributes</h2>
+      <ul>
+        <li><strong>Foot Preference:</strong> Both feet</li>
+        <li>
+          <strong>Stamina:</strong> Likely strong for maintaining high performance throughout 90 minutes, typical for a central midfielder
+        </li>
+        <li><strong>Height &amp; Weight:</strong> 5.5FT, 70KG</li>
+      </ul>
+    </section>
+    
+    <section class="playing-style">
+      <h2>Playing Style &amp; Tactical Traits</h2>
+      <ul>
+        <li><strong>Role on the Field:</strong> Central Midfielder</li>
+        <li>
+          Controls the game from the center by distributing the ball and linking defense with attack. Likely plays a box-to-box role, contributing in both areas.
+        </li>
+        <li>
+          <strong>Tactical Traits:</strong> Good passing range, strong vision, and awareness—key for intercepting opposition attacks and setting the pace.
+        </li>
+        <li>
+          <strong>Technical Skills:</strong> Excellent ball control and effective use of both feet add versatility to his play.
+        </li>
+      </ul>
+    </section>
+    
+    <section class="performance">
+      <h2>Performance This Season</h2>
+      <ul>
+        <li><strong>Games Played:</strong> 16</li>
+        <li><strong>Assists:</strong> 9</li>
+        <li><strong>Goals Scored:</strong> 4</li>
+        <li>
+          Contributed significantly on both ends of the pitch, balancing assists and goals to drive the team’s success.
+        </li>
+      </ul>
+    </section>
+    
+    <section class="strengths">
+      <h2>Strengths</h2>
+      <ul>
+        <li>Excellent passing range over short and long distances.</li>
+        <li>High vision and awareness make him a reliable playmaker.</li>
+        <li>Strong stamina enabling a high work rate throughout the match.</li>
+        <li>Versatility with both feet enhances his playmaking ability.</li>
+      </ul>
+    </section>
+    
+    <section class="summary">
+      <h2>Summary</h2>
+      <p>
+        Antwi Clifford is an energetic and talented central midfielder, renowned for his exceptional passing, vision, and versatility. He has been a key player for Kumasi Angels, significantly contributing to the team’s success with a solid record of assists and goals this season.
+      </p>
+    </section>
+    
+    <img src="../images/Screenshot 2025-03-05 040809.png" alt="Antwi Clifford in action" class="profile-image" />
+    
+    <a href="/portfolios/Player1_Port.html" class="back-button">← Go Back</a>
+
+    <!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- PDF Download Button -->
+<div style="text-align:center; margin:20px;">
+  <button id="download-pdf" class="back">📥 Download as PDF</button>
+</div>
+
+<script>
+  document.getElementById("download-pdf").addEventListener("click", () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "pt", "a4");
+
+    // Select the container section (the main content)
+    const element = document.querySelector(".container");
+
+    // Convert HTML to PDF with working settings
+    doc.html(element, {
+      callback: function (pdf) {
+        pdf.save("Antwi_Clifford_Profile.pdf");
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 555,
+      windowWidth: 900,
+      html2canvas: {
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }
+    });
+  });
+</script>
+
+  </div>
+</body>
+</html>

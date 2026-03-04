@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoloKRA Gallery</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 3;
+      padding-top: 100px;
+    }
+    
+    /* Main container with modern gradient background */
+    .main {
+      width: 100%;
+      padding: 20px;
+      padding-top: 100px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background-image: url(../images/wewew.jpg);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: none;
+      z-index: 1;
+    }
+
+    .main > * {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    /* Hamburger Toggle Button */
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #1a05ff;
+    }
+    
+    .menu {
+      display: flex;
+      align-items: center;
+    }
+    
+    .menu ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .menu ul li a {
+      text-decoration: none;
+      color: #1a05ff;
+      font-weight: bold;
+      transition: 0.4s ease-out;
+    }
+    
+    .menu ul li a:hover {
+      color: #ff7200;
+      transition: 0.5s ease-in-out;
+    }
+    
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .srch {
+      width: 180px;
+      height: 35px;
+      background: white;
+      border: 1px solid #ff7200;
+      padding: 5px;
+      border-radius: 5px;
+      color: black;
+    }
+    
+    .btn {
+      width: 80px;
+      height: 35px;
+      background: #ff7200;
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    .btn:hover {
+      background-color: #ff4500;
+    }
+    
+    /* Responsive Navbar: On small screens, hide the menu by default and show toggle */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .navbar {
+        height: 70px;
+        padding: 0 15px;
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .menu ul {
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        display: none; /* Hidden by default */
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        height: calc(100vh - 70px);
+        padding: 50px 0;
+        transition: left 0.3s ease;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .menu ul.active {
+        display: flex;
+        left: 0;
+      }
+      .menu-toggle {
+        display: block;
+        font-size: 24px;
+        z-index: 101;
+      }
+      .search {
+        position: absolute;
+        top: 20px;
+        right: 60px;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .srch {
+        width: 150px;
+        height: 30px;
+        font-size: 12px;
+      }
+      .btn {
+        width: 60px;
+        height: 30px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .search {
+        right: 50px;
+      }
+      .srch {
+        width: 120px;
+      }
+      .btn {
+        width: 50px;
+      }
+    }
+    
+    /* Statement Section */
+    .statement {
+      text-align: left;
+      margin: 0 auto 20px;
+      max-width: 600px;
+      animation: slideInDown 0.8s ease-out;
+    }
+    
+    .statement h1 {
+      font-size: 16px;
+      color: #00d9ff;
+      font-family: 'Arial Black', sans-serif;
+      text-shadow: none;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    /* Header Title Section */
+    .head {
+      text-align: left;
+      margin: 0 auto 30px;
+      padding: 0;
+      max-width: 600px;
+      color: #fff;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .head h1 {
+      font-size: 56px;
+      color: #ffffff;
+      margin-bottom: 20px;
+      font-weight: 900;
+      text-shadow: none;
+      letter-spacing: -1px;
+      line-height: 1.2;
+    }
+    
+    .head p {
+      font-size: 18px;
+      color: #13b7d4;
+      font-weight: 400;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      backdrop-filter: none;
+      border-left: none;
+      max-width: 550px;
+      margin: 0 0 30px 0;
+      line-height: 1.8;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    
+    .head .cta-btn,
+    .head a.cta-btn {
+      display: inline-block;
+      background: #00d9ff;
+      color: #1a1a1a;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+      text-transform: capitalize;
+      letter-spacing: 0.5px;
+      animation: fadeInUp 1s ease-out 0.4s both;
+      box-shadow: 0 4px 15px rgba(0, 217, 255, 0.25);
+    }
+    
+    .head .cta-btn:hover,
+    .head a.cta-btn:hover {
+      background: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.35);
+    }
+    
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    header {
+      background: linear-gradient(135deg, #ff7200 0%, #ff9a44 50%, #1e3c72 100%);
+      padding: 25px 20px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(255, 114, 0, 0.2);
+    }
+    
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+      color: #ffffff;
+      font-weight: 700;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    header p {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
+    }
+    
+    .gallery-container {
+      max-width: 1500px;
+      margin: 50px auto 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      padding: 50px 30px;
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+      border-radius: 20px;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    .gallery-item {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+      position: relative;
+      cursor: pointer;
+      border: 1px solid rgba(255, 114, 0, 0.15);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-18px) scale(1.05);
+      box-shadow: 0 25px 60px rgba(255, 114, 0, 0.3);
+      border-color: #ff7200;
+    }
+    
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 114, 0, 0.15), rgba(30, 0, 255, 0.15));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+    
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+    
+    .gallery-item img,
+    .gallery-item video,
+    .gallery-item iframe {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+    
+    .gallery-item:hover img,
+    .gallery-item:hover video {
+      transform: scale(1.1) rotate(0.5deg);
+    }
+    
+    .gallery-item video {
+      height: 280px;
+    }
+    
+    .gallery-item iframe {
+      height: 280px;
+    }
+    
+    .caption {
+      padding: 18px 20px;
+      text-align: center;
+      font-size: 16px;
+      color: #333;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    
+    .gallery-item:hover .caption {
+      background: linear-gradient(135deg, #ff7200 0%, #ff9a44 100%);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Loading animation for images */
+    .gallery-item img {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Image overlay effect */
+    .gallery-item::after {
+      content: '👁️';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(255, 114, 0, 0.9);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 3;
+    }
+    
+    .gallery-item:hover::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    /* Special styling for videos */
+    .gallery-item video {
+      background: #000;
+    }
+    
+    /* Special styling for iframes */
+    .gallery-item iframe {
+      border: none;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);\n      color: #fff;\n      padding: 50px 20px 30px;\n      margin-top: 60px;\n      border-top: 3px solid #ff7200;\n    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .footer-logo h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    
+    .footer-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+    }
+    
+    .footer-nav ul li a {
+      color: #fff;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-nav ul li a:hover {
+      color: #ff7200;
+    }
+    
+    .footer-cta {
+      text-align: right;
+    }
+    
+    .footer-cta a {
+      background: #ff7200;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    
+    .footer-cta a:hover {
+      background: #ff4500;
+    }
+    
+    /* Additional Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .main {
+        padding-top: 80px;
+        min-height: auto;
+        padding-bottom: 40px;
+      }
+
+      .statement h1 {
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      .head h1 {
+        font-size: 38px;
+        margin-bottom: 15px;
+      }
+
+      .head p {
+        font-size: 16px;
+        margin-bottom: 25px;
+      }
+      
+      .head .cta-btn,
+      .head a.cta-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 15px;
+        margin: 20px auto;
+      }
+
+      .gallery-item {
+        border-radius: 12px;
+      }
+
+      .gallery-item img,
+      .gallery-item video,
+      .gallery-item iframe {
+        height: 220px;
+      }
+
+      .caption {
+        font-size: 15px;
+        padding: 12px 15px;
+      }
+
+      .need {
+        margin: 20px 15px;
+        padding: 40px 15px;
+      }
+
+      .need h1 {
+        font-size: 28px;
+      }
+
+      .need p {
+        font-size: 16px;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-cta {
+        text-align: center;
+        margin-top: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .statement h1 {
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+
+      .head h1 {
+        font-size: 32px;
+        line-height: 1.15;
+      }
+
+      .head p {
+        font-size: 15px;
+      }
+      
+      .head .cta-btn,
+      .head a.cta-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      header p {
+        font-size: 14px;
+      }
+
+      .gallery-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+      }
+
+      .gallery-item img,
+      .gallery-item video,
+      .gallery-item iframe {
+        height: 200px;
+      }
+
+      .caption {
+        font-size: 14px;
+        padding: 10px 12px;
+      }
+
+      .need h1 {
+        font-size: 24px;
+      }
+
+      .need p {
+        font-size: 14px;
+      }
+    }
+    
+    /* Updated Need Section */
+    .need {
+      background-image: url(../images/ball1.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      margin: 60px 20px;
+      padding: 80px 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 50px rgba(255, 114, 0, 0.2);
+    }
+    
+    .need::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 114, 0, 0.15));
+      border-radius: 15px;
+      z-index: 1;
+    }
+    
+    .need h1, 
+    .need p {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .need h1 {
+      margin-bottom: 15px;
+      font-size: 42px;
+      color: #ff7200;
+      font-weight: 900;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .need p {
+      font-size: 18px;
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="navbar">
+      <div class="logo">
+        <img src="../images/IMG_2209.JPG" alt="Logo">
+      </div>
+      <!-- Hamburger Toggle Button -->
+      <button class="menu-toggle" id="menuToggle">&#9776;</button>
+      <div class="menu">
+        <ul id="navMenu">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="Service.html">SERVICE</a></li>
+          <li><a href="Player.html">PLAYERS</a></li>
+          <li><a href="Gallery.html">GALLERY</a></li>
+          <li><a href="Contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <input type="search" class="srch"  id="searchInput" placeholder="Type a page name (e.g., Home, Service, Players)">
+        <button class="btn" id="searchBtn">Search 👍</button>
+      </div>
+    </div>
+    <div class="statement">
+      <h1>SOLOKRA MANAGEMENT FIRM</h1>
+    </div>
+    <div class="head">
+      <h1>ACCESS OUR GALLERY</h1>
+      <p>Want to know all our talented, marvelous, and extraordinary players?</p>
+      <a href="Contact.html" class="cta-btn">Get in Touch</a>
+    </div>
+  </div>
+
+  <header>
+    <h1>Gallery</h1>
+    <p>Explore our collection of players' pictures and videos</p>
+  </header>
+  
+  <div class="gallery-container">
+    <!-- Gallery Item 1: Image -->
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0047.jpg" alt="Player 1">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <!-- Gallery Item 2: Image -->
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0048.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0049.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0052.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0055.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/asante.jpeg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0058.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>   
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0060.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div> 
+     <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0008.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div> 
+     <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0009.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div> 
+     <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0011.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div> 
+     <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0010.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div> 
+
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0057.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0053.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0051.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0056.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0012.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0012.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0013.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0014.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0015.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0016.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0017.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/WhatsApp Image 2025-03-05 at 12.23.41_14a2fa7c.jpg" alt="Player 2">
+      <div class="caption">Players - In Action</div>
+    </div>
+    <!-- Gallery Item 2: Image -->
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0059.jpg" alt="Player 2">
+      <div class="caption">Players - Victory Pose</div>
+    </div>
+    <!-- Gallery Item 5: Image -->
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0050.jpg" alt="Player 3">
+      <div class="caption">Player 3 - Training Session</div>
+    </div>
+    <!-- Gallery Item 6: Image -->
+    <div class="gallery-item">
+      <img src="../images/IMG-20250304-WA0054.jpg" alt="Player 4">
+      <div class="caption">Player 4 - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250918-WA0022.jpg" alt="Player 4">
+      <div class="caption">Player 4 - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250918-WA0026.jpg" alt="Player 4">
+      <div class="caption">Player 4 - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250317-WA0056.jpg" alt="Player 4">
+      <div class="caption">Players  - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250317-WA0057.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0018.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0019.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250924-WA0020.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250918-WA0027.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250416-WA0066.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250416-WA0067.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250918-WA0025.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG-20250918-WA0024.jpg" alt="Player 4">
+      <div class="caption">Players - Pre-Match Warmup</div>
+    </div>
+   
+    <div class="gallery-item">
+      <img src="../images/IMG-20250416-WA0068.jpg" alt="Player 4">
+      <div class="caption">Player - Winning Cheers</div>
+    </div>
+    <div class="gallery-item">
+      <img src="../images/IMG_2209.JPG" alt="Player 2">
+      <div class="caption">Institution Logo</div>
+    </div>
+    <!-- Gallery Item 3: Video (Local File) -->
+    <div class="gallery-item">
+      <video controls>
+        <source src="../Include/WhatsApp Video 2025.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="caption">Player Highlights</div>
+    </div>
+    <!-- Gallery Item 4: Embedded YouTube Video -->
+    <div class="gallery-item">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+      <div class="caption">Behind the Scenes</div>
+    </div>
+  </div>
+  
+  <div class="need">
+    <h1>Need talented players? Look no further than SoloKRA!</h1>
+    <p>WE ASSIST YOUNG PEOPLE TO MAKE POSITIVE CHOICES BY IMPROVING THEIR SKILLS</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>SoloKRA</h2>
+        <p>&copy; 2025 SOLOKRA MANAGEMENT FIRM. All rights reserved.</p>
+        <p>&copy; dicey_sinclair's</p>
+      </div>
+      <div class="footer-nav">
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="Service.html">SERVICE</a></li>
+          <li><a href="Player.html">PLAYERS</a></li>
+          <li><a href="Gallery.html">GALLERY</a></li>
+          <li><a href="Contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <div class="footer-cta">
+        <a href="Contact.html">Get in Touch</a>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Toggle the menu on small screens
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    
+    // Enhanced gallery interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      
+      // Add click handlers for gallery items
+      galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const img = this.querySelector('img');
+          const video = this.querySelector('video');
+          const iframe = this.querySelector('iframe');
+          
+          if (img) {
+            // Create lightbox for images
+            createLightbox(img.src, img.alt);
+          } else if (video) {
+            // Toggle video play/pause
+            if (video.paused) {
+              video.play();
+            } else {
+              video.pause();
+            }
+          }
+        });
+        
+        // Add keyboard navigation
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+        
+        // Make items focusable
+        item.setAttribute('tabindex', '0');
+      });
+    });
+    
+    // Lightbox functionality
+    function createLightbox(src, alt) {
+      const lightbox = document.createElement('div');
+      lightbox.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        cursor: pointer;
+      `;
+      
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt;
+      img.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      `;
+      
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+      
+      // Close on click
+      lightbox.addEventListener('click', () => {
+        document.body.removeChild(lightbox);
+      });
+      
+      // Close on escape key
+      document.addEventListener('keydown', function escapeHandler(e) {
+        if (e.key === 'Escape') {
+          document.body.removeChild(lightbox);
+          document.removeEventListener('keydown', escapeHandler);
+        }
+      });
+    }
+  </script>
+   <!-- JavaScript for Search Button -->
+   <script>
+    document.getElementById('searchBtn').addEventListener('click', function () {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const pageMap = {
+        'home': 'index.html',
+        'service': 'Service.html',
+        'players': 'Player.html',
+        'gallery': 'Gallery.html',
+        'contact': 'Contact.html'
+      };
+  
+      if (query in pageMap) {
+        // Redirect to the corresponding page
+        window.location.href = pageMap[query];
+      } else {
+        alert('Page not found. Please try searching for: Home, Service, Players, Gallery, or Contact.');
+      }
+    });
+  </script>
+</body>
+</html>

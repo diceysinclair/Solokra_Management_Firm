@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Augustine Sosu - Player Profile</title>
+
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+
+    section {
+      margin-bottom: 25px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+
+    .profile-image {
+      display: block;
+      max-width: 30%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+
+    .back {
+      background: #0097a7;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .back:hover {
+      background: #006064;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <h1>Augustine Sosu - Player Profile</h1>
+    </header>
+
+    <!-- PERSONAL INFORMATION -->
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Name:</strong> Augustine Sosu</li>
+        <li><strong>Date of Birth:</strong> 17th February, 2007</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Height:</strong> 1.75m</li>
+        <li><strong>Weight:</strong> 60.1kg</li>
+        <li><strong>Preferred Foot:</strong> Right</li>
+        <li><strong>Primary Position:</strong> Defensive Midfielder</li>
+        <li><strong>Other Positions:</strong> Central Midfielder, Attacking Midfielder</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+
+    <!-- PLAYER PROFILE -->
+    <section class="player-profile">
+      <h2>Player Profile</h2>
+      <p>
+        Augustine Sosu is a disciplined and intelligent midfielder who excels in controlling the center of the pitch.
+        Known for his strong defensive awareness, ability to read the game, and calm distribution under pressure,
+        he plays a key role in breaking up opposition attacks and transitioning play from defense to attack.
+      </p>
+      <p>
+        A reliable team player with leadership qualities, Augustine combines physical presence with tactical
+        intelligence, making him an effective anchor and box-to-box contributor in midfield.
+      </p>
+    </section>
+
+    <!-- FOOTBALL CAREER -->
+    <section class="football-career">
+      <h2>Playing Experience</h2>
+
+      <h3>Dansoman Wise XI FC</h3>
+      <ul>
+        <li>Developed strong defensive and positional discipline.</li>
+        <li>Played a key role in midfield stability and ball recovery.</li>
+      </ul>
+
+      <h3>Obuasi Bafana FC (U15)</h3>
+      <ul>
+        <li>Competed at youth level with consistent midfield performances.</li>
+        <li>Gained valuable match experience and tactical development.</li>
+      </ul>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills-strengths">
+      <h2>Skills & Strengths</h2>
+      <ul>
+        <li><strong>Passing:</strong> Accurate short and long-range distribution.</li>
+        <li><strong>Interception:</strong> Excellent anticipation and ball recovery.</li>
+        <li><strong>Tackling:</strong> Clean, well-timed defensive challenges.</li>
+        <li><strong>Reading of the Game:</strong> Strong positional awareness and decision-making.</li>
+        <li><strong>Aerial Ability:</strong> Confident in aerial duels and defensive headers.</li>
+      </ul>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section class="languages">
+      <h2>Languages</h2>
+      <ul>
+        <li>English</li>
+        <li>Twi</li>
+      </ul>
+    </section>
+
+    <!-- PLAYER IMAGE -->
+    <img src="../images/August.png" alt="Augustine Sosu in action" class="profile-image" />
+
+    <!-- BACK BUTTON -->
+    <a href="/portfolios/Player11_port.html" class="back-button">← Go Back</a>
+
+    <!-- PDF SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- PDF DOWNLOAD -->
+    <div style="text-align:center; margin:20px;">
+      <button id="download-pdf" class="back">📥 Download as PDF</button>
+    </div>
+
+    <script>
+      document.getElementById("download-pdf").addEventListener("click", () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF("p", "pt", "a4");
+        const element = document.querySelector(".container");
+
+        doc.html(element, {
+          callback: function (pdf) {
+            pdf.save("Augustine_Sosu_Profile.pdf");
+          },
+          margin: [20, 20, 20, 20],
+          autoPaging: "text",
+          width: 555,
+          windowWidth: 900,
+          html2canvas: {
+            scale: 1,
+            useCORS: true,
+            backgroundColor: "#ffffff"
+          }
+        });
+      });
+    </script>
+
+  </div>
+</body>
+</html>

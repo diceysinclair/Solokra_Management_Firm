@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mensah Kelvin Osei - Player Profile</title>
+
+<style>
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Arial', sans-serif;
+}
+
+body{
+  background:#f8f9fa;
+  color:#333;
+  padding:20px;
+  padding-top:100px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:40px;
+  padding:0 20px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 10px rgba(0,0,0,.1);
+  z-index:100;
+}
+
+.logo img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:2px solid #7c3aed;
+  object-fit:cover;
+}
+
+.menu ul{
+  display:flex;
+  list-style:none;
+  gap:25px;
+}
+
+.menu a{
+  text-decoration:none;
+  font-weight:600;
+  color:#140de9;
+  background-color:#1bc3e0;
+  padding:8px 15px;
+  border-radius:5px;
+}
+
+.menu a:hover{
+  background:rgba(124,58,237,.1);
+  color:#1bc3e0;
+}
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:5px;
+}
+
+.hamburger div{
+  width:25px;
+  height:3px;
+  background:#333;
+  border-radius:2px;
+}
+
+/* ===== BUTTONS ===== */
+.back-btn{
+  background:#7c3aed;
+  color:#fff;
+  padding:10px 25px;
+  border-radius:5px;
+  text-decoration:none;
+  font-weight:600;
+  margin-right:10px;
+}
+
+.cv-btn{
+  background:#059669;
+  color:#fff;
+  padding:10px 25px;
+  border-radius:5px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1200px;
+  margin:auto;
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+/* ===== HEADER ===== */
+.profile-header{
+  background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  color:#fff;
+  padding:40px;
+  display:grid;
+  grid-template-columns:250px 1fr;
+  gap:40px;
+}
+
+.player-photo{
+  width:200px;
+  height:260px;
+  border-radius:10px;
+  object-fit:cover;
+  border:3px solid #7c3aed;
+}
+
+.player-title h1{
+  font-size:42px;
+}
+
+.player-title h2{
+  font-size:20px;
+  opacity:.9;
+}
+
+.status{
+  background:#4CAF50;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:5px;
+  font-weight:700;
+  display:inline-block;
+  margin-top:10px;
+}
+
+/* ===== CONTENT ===== */
+.profile-content{
+  display:grid;
+  grid-template-columns:1fr 350px;
+  gap:30px;
+  padding:40px;
+}
+
+/* ===== BOX STYLE ===== */
+.info-box,
+.sidebar-box{
+  border-radius:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  margin-bottom:30px;
+  overflow:hidden;
+}
+
+.info-box-header,
+.sidebar-box-header{
+  background:#7c3aed;
+  color:#fff;
+  padding:15px;
+  font-weight:700;
+}
+
+.info-box-content,
+.sidebar-box-content{
+  background:#fafafa;
+  padding:20px;
+}
+
+/* ===== RANGE GAUGE ===== */
+.skill-item{
+  margin-bottom:15px;
+}
+
+.skill-name{
+  font-weight:600;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.skill-bar{
+  width:100%;
+  height:12px;
+  background:#e0e0e0;
+  border-radius:6px;
+  overflow:hidden;
+}
+
+.skill-progress{
+  height:100%;
+  background:linear-gradient(90deg,#7c3aed,#5b21b6);
+  border-radius:6px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* ===== LIST STYLE ===== */
+.highlight-list{
+  list-style:none;
+  padding-left:0;
+}
+
+.highlight-list li{
+  margin-bottom:10px;
+  padding:10px;
+  background:rgba(124,58,237,0.05);
+  border-left:4px solid #7c3aed;
+  border-radius:6px;
+  font-weight:500;
+  transition:.3s;
+}
+
+.highlight-list li:hover{
+  background:rgba(124,58,237,0.1);
+  transform:translateX(5px);
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media(max-width:768px){
+  .profile-header,
+  .profile-content{
+    grid-template-columns:1fr;
+  }
+
+  .menu ul{
+    flex-direction:column;
+    position:fixed;
+    top:75px;
+    right:-250px;
+    width:200px;
+    height:100%;
+    background:#fff;
+    gap:15px;
+    padding:20px;
+    box-shadow:-2px 0 10px rgba(0,0,0,.1);
+    transition:right 0.3s ease;
+  }
+
+  .menu ul.active{
+    right:0;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+}
+</style>
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Navbar placeholder -->
+<div class="navbar">
+  <div class="logo"><img src="../images/IMG_2209.JPG" alt="Logo"></div>
+  <div class="menu">
+    <ul>
+      <li><a href="../main/index.html">HOME</a></li>
+      <li><a href="../main/Service.html">SERVICE</a></li>
+      <li><a href="../main/Player.html">PLAYERS</a></li>
+      <li><a href="../main/Gallery.html">GALLERY</a></li>
+      <li><a href="../main/Contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<a href="../main/Player.html" class="back-btn">🔙 Back</a>
+<a href="../cvs/Francisca.html" class="cv-btn">📄 View CV</a>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="profile-header">
+    <img src="../images/IMG-20250918-WA0025.jpg" alt="Mensah Kelvin Osei" class="player-photo">
+    <div class="player-title">
+      <h1>Mensah Kelvin Osei</h1>
+      <h2>Winger</h2>
+      <span class="status">Available for Transfer</span>
+      <p style="margin-top:10px;">Nationality: <strong>Ghanaian</strong></p>
+      <p>Current Team: Samuel Inkoom Academy</p>
+      <p>Market Value: <strong>$50,000</strong></p>
+      <p>Management: Solokra Management Firm (CEO: Antwi)</p>
+      <p>Email: <a href="mailto:solokramanagementfirm1@gmail.com">solokramanagementfirm1@gmail.com</a></p>
+    </div>
+  </div>
+
+  <div class="profile-content">
+    <!-- LEFT COLUMN -->
+    <div>
+
+      <div class="info-box">
+        <div class="info-box-header">Playing Style</div>
+        <div class="info-box-content">
+          <p>
+            Explosive Speedster – thrives on pace, dribbling, and creating chances from the flanks.
+            His direct style of play and creativity make him a constant threat to opposition defenses.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-header">Key Attributes</div>
+        <div class="info-box-content">
+          <ul class="highlight-list">
+            <li><strong>Blistering Pace:</strong> Sprint speed clocked at 32 km/h</li>
+            <li><strong>Dribbling Flair:</strong> Successful dribble rate of 78%</li>
+            <li><strong>Chance Creation:</strong> Averages 4 key passes per game</li>
+            <li><strong>Work Rate:</strong> Relentless determination on and off the ball</li>
+            <li><strong>Versatility:</strong> Effective on both wings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-header">Career History</div>
+        <div class="info-box-content">
+          <ul class="highlight-list">
+            <li><strong>Memphis FC:</strong> Developed technical and tactical foundation</li>
+            <li><strong>Kofi’s FC:</strong> Sharpened attacking instincts and improved versatility</li>
+            <li><strong>Boako Nationals FC:</strong> Became a key attacking threat, showcasing speed and consistency</li>
+            <li><strong>Samuel Inkoom Academy:</strong> Current team – continues to develop as a top young talent</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-header">Career Statistics</div>
+        <div class="info-box-content">
+          <table>
+            <tr>
+              <th>Team</th>
+              <th>Matches</th>
+              <th>Goals</th>
+              <th>Assists</th>
+              <th>Successful Dribbles</th>
+            </tr>
+            <tr>
+              <td>Memphis FC</td>
+              <td>12</td>
+              <td>4</td>
+              <td>6</td>
+              <td>55</td>
+            </tr>
+            <tr>
+              <td>Kofi’s FC</td>
+              <td>15</td>
+              <td>6</td>
+              <td>8</td>
+              <td>75</td>
+            </tr>
+            <tr>
+              <td>Boako Nationals FC</td>
+              <td>18</td>
+              <td>8</td>
+              <td>8</td>
+              <td>80</td>
+            </tr>
+            <tr>
+              <th>Total</th>
+              <th>45</th>
+              <th>18</th>
+              <th>22</th>
+              <th>210+</th>
+            </tr>
+          </table>
+          <p><strong>Top Speed:</strong> 32 km/h</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-header">Player Identity</div>
+        <div class="info-box-content">
+          <p>
+            Mensah Kelvin Osei is a young, fearless winger with a natural hunger to attack and create impact. 
+            His blistering speed, creativity, and high work rate make him a nightmare for defenders. 
+            Under Solokra Management, he is being groomed into a professional asset for both club and national-level football.
+            He currently represents <strong>Samuel Inkoom Academy</strong>, a strong platform shaping him into a top-level winger.
+            His market value is estimated at <strong>$50,000</strong>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <aside>
+      <div class="sidebar-box">
+        <div class="sidebar-box-header">Training Progress</div>
+        <div class="sidebar-box-content">
+          <div class="skill-item">
+            <div class="skill-name">Week 1</div>
+            <div class="skill-bar"><div class="skill-progress" style="width:50%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Week 2</div>
+            <div class="skill-bar"><div class="skill-progress" style="width:63%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Week 3</div>
+            <div class="skill-bar"><div class="skill-progress" style="width:72%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Week 4</div>
+            <div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Week 5</div>
+            <div class="skill-bar"><div class="skill-progress" style="width:88%"></div></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<script>
+// Toggle mobile menu
+function toggleMenu(){
+  const menu = document.querySelector('.menu ul');
+  menu.classList.toggle('active');
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const playerPhoto = document.querySelector('.player-photo');
+  if (!playerPhoto) return;
+
+  playerPhoto.style.cursor = 'pointer';
+  playerPhoto.addEventListener('click', function () {
+    createLightbox(playerPhoto.src, playerPhoto.alt || '');
+  });
+});
+
+function createLightbox(src, alt) {
+  const lightbox = document.createElement('div');
+  lightbox.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+  `;
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.style.cssText = `
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  `;
+
+  lightbox.appendChild(img);
+  document.body.appendChild(lightbox);
+
+  lightbox.addEventListener('click', () => {
+    if (document.body.contains(lightbox)) {
+      document.body.removeChild(lightbox);
+    }
+  });
+
+  document.addEventListener('keydown', function escapeHandler(e) {
+    if (e.key === 'Escape') {
+      if (document.body.contains(lightbox)) {
+        document.body.removeChild(lightbox);
+      }
+      document.removeEventListener('keydown', escapeHandler);
+    }
+  });
+}
+</script>
+
+</body>
+</html>

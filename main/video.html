@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Videos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ff7200;
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #ff7200;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .menu {
+      display: flex;
+    }
+
+    .menu ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu ul li a {
+      text-decoration: none;
+      color: #1e3c72;
+      font-weight: 600;
+      transition: all 0.3s ease-out;
+      padding: 8px 16px;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .menu ul li a:hover {
+      color: #ff7200;
+      background: rgba(255, 114, 0, 0.1);
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .srch {
+      width: 200px;
+      height: 38px;
+      background: white;
+      border: 2px solid #ff7200;
+      padding: 8px 14px;
+      border-radius: 8px;
+      color: black;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .srch:focus {
+      outline: none;
+      border-color: #ff4500;
+      box-shadow: 0 0 10px rgba(255, 114, 0, 0.3);
+    }
+
+    .btn {
+      width: 90px;
+      height: 38px;
+      background: linear-gradient(135deg, #ff7200 0%, #ff4500 100%);
+      border: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 114, 0, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 114, 0, 0.4);
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .navbar {
+        padding: 0 15px;
+        height: 70px;
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        transition: left 0.3s ease;
+        padding-top: 50px;
+      }
+
+      .menu.active {
+        left: 0;
+      }
+
+      .menu ul {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+      }
+
+      .menu ul li a {
+        font-size: 18px;
+        padding: 15px 30px;
+        display: block;
+        width: 200px;
+      }
+
+      .search {
+        position: absolute;
+        top: 20px;
+        right: 60px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .srch {
+        width: 150px;
+        height: 30px;
+        font-size: 12px;
+      }
+
+      .btn {
+        width: 70px;
+        height: 30px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .search {
+        right: 50px;
+      }
+
+      .srch {
+        width: 120px;
+        height: 28px;
+      }
+
+      .btn {
+        width: 60px;
+        height: 28px;
+      }
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+      background: linear-gradient(135deg, rgba(30, 60, 114, 0.3) 0%, rgba(42, 82, 152, 0.3) 100%), url('../images/360_F_135088314_wunoT5IKEKbnKDRN85K98QOL00imbp2O.jpg') center/cover;
+      padding: 60px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(30, 60, 114, 0.3);
+      color: white;
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    header h1 {
+      font-size: 48px;
+      color: white;
+      margin-bottom: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    
+    header p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Video Grid */
+    .video-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+    
+    .video-box {
+      background: white;
+      padding: 0;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .video-box:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .video-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .video-box video,
+    .video-box iframe {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px 15px 0 0;
+      transition: transform 0.4s ease;
+    }
+
+    .video-box:hover video,
+    .video-box:hover iframe {
+      transform: scale(1.05);
+    }
+
+    .video-content {
+      padding: 20px;
+    }
+
+    .video-box h3 {
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      color: #1e3c72;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .video-box p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Play Icon Overlay */
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 114, 0, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .video-wrapper:hover .play-icon {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .back-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      grid-column: 1 / -1;
+    }
+
+    .back {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff7200 0%, #ff4500 100%);
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 114, 0, 0.3);
+      font-size: 16px;
+    }
+
+    .back:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 114, 0, 0.4);
+    }
+
+    .back a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+        padding-top: 70px;
+      }
+
+      header {
+        padding: 40px 20px;
+        margin-bottom: 40px;
+      }
+
+      header h1 {
+        font-size: 36px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .video-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0;
+      }
+
+      .video-box {
+        padding: 0;
+      }
+
+      .video-content {
+        padding: 15px;
+      }
+
+      .video-box h3 {
+        font-size: 18px;
+      }
+
+      .video-box p {
+        font-size: 13px;
+      }
+
+      .back {
+        padding: 12px 30px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 30px 15px;
+        margin-bottom: 30px;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      header p {
+        font-size: 14px;
+      }
+
+      .video-box h3 {
+        font-size: 16px;
+      }
+
+      .video-box p {
+        font-size: 12px;
+      }
+
+      .play-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+
+      .back {
+        padding: 10px 25px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="/images/IMG_2209.JPG" alt="Logo">
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu" id="menu">
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="Service.html">SERVICE</a></li>
+        <li><a href="Player.html">PLAYERS</a></li>
+        <li><a href="Gallery.html">GALLERY</a></li>
+        <li><a href="Contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+    <div class="search">
+      <input type="search" class="srch" id="searchInput" placeholder="Type a page name (e.g., Home, Service, Players)">
+      <button class="btn" id="searchBtn">Search 👍</button>
+    </div>
+  </div>
+
+  <header>
+    <h1>🎬 Our Videos</h1>
+    <p>Explore our training sessions, behind-the-scenes action, and success stories.</p>
+  </header>
+  <div class="video-container">
+    <!-- Example using HTML5 Video -->
+    <div class="video-box">
+      <div class="video-wrapper">
+        <video controls>
+          <source src="/Include/Video 2025-03-08 .mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="play-icon">▶</div>
+      </div>
+      <div class="video-content">
+        <h3>Partnership in Progress</h3>
+        <p>Watch our latest partnership developments and collaborative efforts with our esteemed partners.</p>
+      </div>
+    </div>
+    <!-- Example using YouTube Embed -->
+    <div class="video-box">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+        <div class="play-icon">▶</div>
+      </div>
+      <div class="video-content">
+        <h3>Behind the Scenes</h3>
+        <p>Get an exclusive look at what happens behind the scenes with our team and players.</p>
+      </div>
+    </div>
+    <!-- Add more video boxes as needed -->
+    <div class="video-box">
+      <div class="video-wrapper">
+        <video controls>
+          <source src="/Include/WhatsApp Video 2025.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="play-icon">▶</div>
+      </div>
+      <div class="video-content">
+        <h3>Player Spotlight</h3>
+        <p>Featuring extraordinary performance moments and highlights from our talented players.</p>
+      </div>
+    </div>
+
+    <div class="back-container">
+      <button class="back"><a href="Service.html">🔙 Back to Service</a></button>
+    </div>
+  </div>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu');
+      
+      hamburger.addEventListener('click', function() {
+        menu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      });
+
+      // Close menu when clicking on a link
+      const menuLinks = document.querySelectorAll('.menu ul li a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          menu.classList.remove('active');
+          hamburger.classList.remove('active');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+          menu.classList.remove('active');
+          hamburger.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+  <!-- JavaScript for Search Button -->
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function () {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const pageMap = {
+        'home': 'index.html',
+        'service': 'Service.html',
+        'players': 'Player.html',
+        'gallery': 'Gallery.html',
+        'contact': 'Contact.html'
+      };
+  
+      if (query in pageMap) {
+        // Redirect to the corresponding page
+        window.location.href = pageMap[query];
+      } else {
+        alert('Page not found. Please try searching for: Home, Service, Players, Gallery, or Contact.');
+      }
+    });
+  </script>
+</body>
+</html>

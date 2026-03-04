@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thomas Blay - Player Profile</title>
+
+<style>
+/* ===== GLOBAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f8f9fa;
+  color: #333;
+  padding: 20px;
+  padding-top: 100px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+ justify-content:flex-start;
+  gap:40px;
+  padding: 0 20px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+  z-index: 100;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #7c3aed;
+  object-fit: cover;
+}
+
+/* Desktop Menu */
+.menu ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.menu a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+.menu a:hover {
+  background: rgba(124,58,237,.1);
+  color: #7c3aed;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* Sidebar for mobile */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  padding: 100px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: 0.3s;
+  z-index: 200;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: rgba(124,58,237,0.1);
+  color: #7c3aed;
+}
+
+/* ===== BUTTONS ===== */
+.back-btn, .cv-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 10px 10px 20px 0;
+  transition: 0.3s;
+}
+
+.back-btn {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.cv-btn {
+  background: #059669;
+  color: #fff;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,.1);
+}
+
+/* ===== HEADER ===== */
+.profile-header {
+  background: linear-gradient(135deg,#7c3aed,#5b21b6);
+  color: #fff;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.player-photo {
+  width: 200px;
+  height: 260px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.player-title h1 {
+  font-size: 46px;
+}
+
+.player-title h2 {
+  font-size: 22px;
+  opacity: .9;
+}
+
+.status {
+  background: #059669;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* ===== CONTENT ===== */
+.profile-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 30px;
+  padding: 40px;
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.info-box-header {
+  background: #7c3aed;
+  color: #fff;
+  padding: 15px;
+  font-weight: 700;
+}
+
+.info-box-content {
+  background: #fafafa;
+  padding: 20px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+/* ===== ATTRIBUTE SECTION ===== */
+.attribute-item {
+  margin-bottom: 20px;
+}
+
+.attribute-item h4 {
+  color: #7c3aed;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.attribute-item p {
+  line-height: 1.6;
+  color: #555;
+}
+
+.strength-list, .highlight-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.strength-list li, .highlight-list li {
+  margin-bottom: 6px;
+  padding-left: 5px;
+  font-size: 14px;
+}
+
+.highlight-list li {
+  padding: 10px;
+  background: rgba(124,58,237,0.05);
+  border-left: 4px solid #7c3aed;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.highlight-list li:hover {
+  background: rgba(124,58,237,0.1);
+  transform: translateX(5px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .menu ul {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .profile-header,
+  .profile-content {
+    grid-template-columns: 1fr;
+  }
+  .player-photo {
+    width: 150px;
+    height: 200px;
+    margin: auto;
+  }
+}
+
+@media(max-width:768px){
+  .profile-content {
+    grid-template-columns: 1fr; /* stack everything vertically */
+    padding: 20px;
+  }
+  aside {
+    order: 1; /* put training progress after stats */
+    width: 100%; /* full width */
+  }
+  .skill-bar {
+    height: 12px; /* a bit taller for mobile */
+  }
+}
+
+<style>
+.skill-item {
+  margin-bottom: 15px;
+}
+
+.skill-name {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 12px;  /* makes the bar visible */
+  background: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg,#7c3aed,#5b21b6);
+  border-radius: 6px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo"><img src="../images/IMG_2209.JPG" alt="Thomas Blay"></div>
+  <div class="menu">
+    <ul>
+      <li><a href="../main/index.html">HOME</a></li>
+      <li><a href="../main/Service.html">SERVICE</a></li>
+      <li><a href="../main/Player.html">PLAYERS</a></li>
+      <li><a href="../main/Gallery.html">GALLERY</a></li>
+      <li><a href="../main/Contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+  <div class="hamburger" onclick="toggleSidebar()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <a href="../main/index.html">HOME</a>
+  <a href="../main/Service.html">SERVICE</a>
+  <a href="../main/Player.html">PLAYERS</a>
+  <a href="../main/Gallery.html">GALLERY</a>
+  <a href="../main/Contact.html">CONTACT</a>
+</div>
+
+<!-- NAV BUTTONS -->
+<a href="../main/Player.html" class="back-btn">🔙 Back</a>
+<a href="../cvs/Thomas.html" class="cv-btn">📄 View CV</a>
+
+<div class="container">
+
+<!-- PROFILE HEADER -->
+<div class="profile-header">
+  <img src="../images/thomas.png" class="player-photo" alt="Thomas Blay">
+  <div class="player-title">
+    <h1>THOMAS BLAY</h1>
+    <h2>CENTER BACK / RIGHT BACK</h2>
+    <span class="status">Available for Transfer</span>
+    <p style="margin-top:10px;">Market Value: <strong>$20,000</strong></p>
+  </div>
+</div>
+
+<!-- PROFILE CONTENT -->
+<div class="profile-content">
+
+<div>
+  <div class="info-box">
+    <div class="info-box-header">PERFORMANCE STATS</div>
+    <div class="info-box-content">
+      <div class="info-row"><div class="info-label">Matches</div><div>14</div></div>
+      <div class="info-row"><div class="info-label">Clean Sheets</div><div>14</div></div>
+      <div class="info-row"><div class="info-label">Goals</div><div>2</div></div>
+      <div class="info-row"><div class="info-label">Assists</div><div>1</div></div>
+      <div class="info-row"><div class="info-label">MVP Awards</div><div>5</div></div>
+    </div>
+  </div>
+</div>
+
+<aside>
+ <div class="sidebar-box">
+  <div class="sidebar-box-header">TRAINING PROGRESS</div>
+  <div class="sidebar-box-content">
+    <div class="skill-item">
+      <div class="skill-name">Week 1</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:60%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Week 2</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Week 3</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Week 4</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:88%"></div></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Week 5</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:95%"></div></div>
+    </div>
+  </div>
+</div>
+
+
+
+</aside>
+
+<!-- PLAYER ATTRIBUTES -->
+<div class="info-box">
+  <div class="info-box-header">PLAYER ATTRIBUTES</div>
+  <div class="info-box-content">
+
+    <div class="attribute-item">
+      <h4>Position Versatility</h4>
+      <p>Effective as both Center Back and Right Back, offering tactical flexibility and defensive balance.</p>
+    </div>
+
+    <div class="attribute-item">
+      <h4>Strengths</h4>
+      <ul class="strength-list">
+        <li>✔ Solid tackling and marking skills</li>
+        <li>✔ Strong positional awareness and game reading</li>
+        <li>✔ Dominant aerial presence in defense and attack</li>
+        <li>✔ Leadership qualities and strong communication</li>
+        <li>✔ High work ethic and excellent stamina</li>
+      </ul>
+    </div>
+
+    <div class="attribute-item">
+      <h4>Style of Play</h4>
+      <p>
+        A commanding defender who combines defensive reliability with intelligent positioning.
+        Contributes offensively during set-pieces and maintains composure under pressure.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- KEY HIGHLIGHTS -->
+<div class="info-box">
+  <div class="info-box-header">KEY HIGHLIGHTS</div>
+  <div class="info-box-content">
+    <ul class="highlight-list">
+      <li>🔥 Maintained a 100% clean sheet rate across 14 matches.</li>
+      <li>⚽ Scored 2 goals and provided 1 assist.</li>
+      <li>🏆 Won 5 MVP Awards for consistent elite performances.</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+</div>
+
+<script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  if(sidebar.style.left === '0px') {
+    sidebar.style.left = '-250px';
+  } else {
+    sidebar.style.left = '0px';
+  }
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const playerPhoto = document.querySelector('.player-photo');
+  if (!playerPhoto) return;
+
+  playerPhoto.style.cursor = 'pointer';
+  playerPhoto.addEventListener('click', function () {
+    createLightbox(playerPhoto.src, playerPhoto.alt || '');
+  });
+});
+
+function createLightbox(src, alt) {
+  const lightbox = document.createElement('div');
+  lightbox.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+  `;
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.style.cssText = `
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  `;
+
+  lightbox.appendChild(img);
+  document.body.appendChild(lightbox);
+
+  lightbox.addEventListener('click', () => {
+    if (document.body.contains(lightbox)) {
+      document.body.removeChild(lightbox);
+    }
+  });
+
+  document.addEventListener('keydown', function escapeHandler(e) {
+    if (e.key === 'Escape') {
+      if (document.body.contains(lightbox)) {
+        document.body.removeChild(lightbox);
+      }
+      document.removeEventListener('keydown', escapeHandler);
+    }
+  });
+}
+</script>
+
+</body>
+</html>

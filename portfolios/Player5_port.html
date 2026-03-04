@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Francisca Kwarteng - Player Profile</title>
+
+<style>
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+  background:#f8f9fa;
+  color:#333;
+  padding:20px;
+  padding-top:100px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;  
+  gap:40px; 
+  padding:0 20px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 10px rgba(0,0,0,.1);
+  z-index:100;
+}
+
+.logo img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:2px solid #7c3aed;
+  object-fit:cover;
+}
+
+.menu ul{
+  display:flex;
+  list-style:none;
+  gap:25px;
+}
+
+.menu a{
+  text-decoration:none;
+  font-weight:600;
+  color:#140de9;
+  background-color:#1bc3e0;
+  padding:8px 15px;
+  border-radius:5px;
+}
+
+.menu a:hover{
+  background:rgba(124,58,237,.1);
+  color:#1bc3e0;
+}
+
+/* Hamburger for mobile */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:5px;
+}
+
+.hamburger div{
+  width:25px;
+  height:3px;
+  background:#333;
+  border-radius:2px;
+}
+
+/* ===== BUTTONS ===== */
+.back-btn{
+  background:#7c3aed;
+  color:#fff;
+  padding:10px 25px;
+  border-radius:5px;
+  text-decoration:none;
+  font-weight:600;
+  margin-right:10px;
+}
+
+.cv-btn{
+  background:#059669;
+  color:#fff;
+  padding:10px 25px;
+  border-radius:5px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1200px;
+  margin:auto;
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+/* ===== HEADER ===== */
+.profile-header{
+  background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  color:#fff;
+  padding:40px;
+  display:grid;
+  grid-template-columns:250px 1fr;
+  gap:40px;
+}
+
+.player-photo{
+  width:200px;
+  height:260px;
+  border-radius:10px;
+  object-fit:cover;
+  border:3px solid #7c3aed;
+}
+
+.player-title h1{
+  font-size:42px;
+}
+
+.player-title h2{
+  font-size:20px;
+  opacity:.9;
+}
+
+.status{
+  background:#059669;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:5px;
+  font-weight:700;
+  display:inline-block;
+  margin-top:10px;
+}
+
+/* ===== CONTENT ===== */
+.profile-content{
+  display:grid;
+  grid-template-columns:1fr 350px;
+  gap:30px;
+  padding:40px;
+}
+
+/* ===== BOX STYLE ===== */
+.info-box,
+.sidebar-box{
+  border-radius:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  margin-bottom:30px;
+  overflow:hidden;
+}
+
+.info-box-header,
+.sidebar-box-header{
+  background:#7c3aed;
+  color:#fff;
+  padding:15px;
+  font-weight:700;
+}
+
+.info-box-content,
+.sidebar-box-content{
+  background:#fafafa;
+  padding:20px;
+}
+
+/* ===== RANGE GAUGE ===== */
+.skill-item{
+  margin-bottom:15px;
+}
+
+.skill-name{
+  font-weight:600;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.skill-bar{
+  width:100%;
+  height:12px;
+  background:#e0e0e0;
+  border-radius:6px;
+  overflow:hidden;
+}
+
+.skill-progress{
+  height:100%;
+  background:linear-gradient(90deg,#7c3aed,#5b21b6);
+  border-radius:6px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* ===== LIST STYLE ===== */
+.highlight-list{
+  list-style:none;
+  padding-left:0;
+}
+
+.highlight-list li{
+  margin-bottom:10px;
+  padding:10px;
+  background:rgba(124,58,237,0.05);
+  border-left:4px solid #7c3aed;
+  border-radius:6px;
+  font-weight:500;
+  transition:.3s;
+}
+
+.highlight-list li:hover{
+  background:rgba(124,58,237,0.1);
+  transform:translateX(5px);
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media(max-width:768px){
+  .profile-header,
+  .profile-content{
+    grid-template-columns:1fr;
+  }
+
+  .menu ul{
+    flex-direction:column;
+    position:fixed;
+    top:75px;
+    right:-250px;
+    width:200px;
+    height:100%;
+    background:#fff;
+    gap:15px;
+    padding:20px;
+    box-shadow:-2px 0 10px rgba(0,0,0,.1);
+    transition:right 0.3s ease;
+  }
+
+  .menu ul.active{
+    right:0;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo"><img src="../images/IMG_2209.JPG"></div>
+
+  <div class="menu">
+    <ul>
+      <li><a href="../main/index.html">HOME</a></li>
+      <li><a href="../main/Service.html">SERVICE</a></li>
+      <li><a href="../main/Player.html">PLAYERS</a></li>
+      <li><a href="../main/Gallery.html">GALLERY</a></li>
+      <li><a href="../main/Contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<a href="../main/Player.html" class="back-btn">🔙 Back</a>
+<a href="../cvs/Francisca.html" class="cv-btn">📄 View CV</a>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="profile-header">
+  <img src="../images/Francisca.png" alt="Francisca Kwarteng" class="player-photo">
+
+  <div class="player-title">
+    <h1>FRANCISCA KWARTENG</h1>
+    <h2>Right Back / Defensive Midfielder</h2>
+    <span class="status">Available for Transfer</span>
+    <p style="margin-top:10px;">
+      Nationality: <strong>Ghanaian</strong>
+    </p>
+  </div>
+</div>
+
+<div class="profile-content">
+
+<!-- LEFT SIDE -->
+<div>
+
+<div class="info-box">
+  <div class="info-box-header">Personal Information</div>
+  <div class="info-box-content">
+    <ul class="highlight-list">
+      <li><strong>Date of Birth:</strong> 7th April 2002</li>
+      <li><strong>Height:</strong> 1.7m</li>
+      <li><strong>Preferred Foot:</strong> Right</li>
+      <li><strong>Current Club:</strong> Ashtown Ladies</li>
+      <li><strong>Agent:</strong> Solokra Management Firm</li>
+    </ul>
+  </div>
+</div>
+
+<div class="info-box">
+  <div class="info-box-header">Football Career</div>
+  <div class="info-box-content">
+    <ul class="highlight-list">
+      <li><strong>Ashtown Ladies:</strong> Defensive & midfield contributor.</li>
+      <li><strong>Soccer Angels (2020–2024):</strong> 8 games, 2 goals, 3 assists.</li>
+      <li><strong>Oforikrom Ladies (2015–2017):</strong> Early experience.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="info-box">
+  <div class="info-box-header">Achievements</div>
+  <div class="info-box-content">
+    <ul class="highlight-list">
+      <li><strong>GUSA Champion 2022:</strong> Won with KNUST.</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<!-- RIGHT SIDE -->
+<aside>
+<div class="sidebar-box">
+  <div class="sidebar-box-header">Training Progress</div>
+  <div class="sidebar-box-content">
+
+    <div class="skill-item">
+      <div class="skill-name">Week 1</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:60%"></div></div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-name">Week 5</div>
+      <div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div>
+    </div>
+
+  </div>
+</div>
+</aside>
+
+<!-- PLAYER PROFILE & SKILLS -->
+<div class="info-box">
+  <div class="info-box-header">Player Profile</div>
+  <div class="info-box-content">
+    <p>
+      A versatile and disciplined footballer known for strong defensive awareness,
+      tactical intelligence, and excellent ball distribution. Excels in defensive
+      and midfield roles with composure under pressure.
+    </p>
+  </div>
+</div>
+
+<div class="info-box">
+  <div class="info-box-header">Skills & Strengths</div>
+  <div class="info-box-content">
+    <ul class="highlight-list">
+      <li>Strong tackling & interception</li>
+      <li>Excellent positioning</li>
+      <li>Accurate passing</li>
+      <li>High stamina & speed</li>
+      <li>Leadership qualities</li>
+    </ul>
+  </div>
+</div>
+
+<div class="info-box">
+  <div class="info-box-header">Education</div>
+  <div class="info-box-content">
+    <ul class="highlight-list">
+      <li>Kwame Nkrumah University of Science and Technology (KNUST)</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+</div>
+
+<script>
+// Toggle mobile menu
+function toggleMenu(){
+  const menu = document.querySelector('.menu ul');
+  menu.classList.toggle('active');
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const playerPhoto = document.querySelector('.player-photo');
+  if (!playerPhoto) return;
+
+  playerPhoto.style.cursor = 'pointer';
+  playerPhoto.addEventListener('click', function () {
+    createLightbox(playerPhoto.src, playerPhoto.alt || '');
+  });
+});
+
+function createLightbox(src, alt) {
+  const lightbox = document.createElement('div');
+  lightbox.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+  `;
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.style.cssText = `
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  `;
+
+  lightbox.appendChild(img);
+  document.body.appendChild(lightbox);
+
+  lightbox.addEventListener('click', () => {
+    if (document.body.contains(lightbox)) {
+      document.body.removeChild(lightbox);
+    }
+  });
+
+  document.addEventListener('keydown', function escapeHandler(e) {
+    if (e.key === 'Escape') {
+      if (document.body.contains(lightbox)) {
+        document.body.removeChild(lightbox);
+      }
+      document.removeEventListener('keydown', escapeHandler);
+    }
+  });
+}
+</script>
+
+</body>
+</html>

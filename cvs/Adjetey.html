@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emmanuel Adjetey Arthur - Player Profile</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 35%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Emmanuel Adjetey Arthur - Player Profile</h1>
+    </header>
+    
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Full Name:</strong> Emmanuel Adjetey Arthur</li>
+        <li><strong>Date of Birth:</strong> 18th June 2003</li>
+        <li><strong>Position:</strong> Goalkeeper</li>
+        <li><strong>Height:</strong> 6'1</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+    
+    <section class="profile-summary">
+      <h2>Profile Summary</h2>
+      <p>
+        As a dedicated and passionate professional goalkeeper, I thrive under pressure and am driven by the relentless pursuit of excellence on and off the pitch. 
+        My career journey, marked by pivotal roles in securing promotions, competing in high-stakes finals, and representing national youth teams, reflects my unwavering commitment to growth and success.
+      </p>
+      <p>
+        With a commanding presence in the box, quick reflexes, and a keen ability to organize defenses, I pride myself on being a reliable last line of defense. 
+        Rooted in discipline, resilience, and a team-first mentality, I am prepared to embrace challenges that push boundaries and inspire the next generation of athletes.
+      </p>
+    </section>
+    
+    <section class="experience">
+  <h2>Experience & Achievements</h2>
+  <ul>
+    <li>Contributed to team qualification for the Middle League with <strong>Apedwa Wolf</strong>.</li>
+    <li>Selected for <strong>Ghana’s U-17</strong> and <strong>U-20 national teams</strong>, marking progression to international football.</li>
+    <li>Competed with <strong>Inter Allies FC</strong> in the Ghanaian football league.</li>
+    <li>Joined <strong>Bofoakwa Tano</strong>, playing a pivotal role in:
+      <ul>
+        <li>Securing promotion to the Ghana Premier League.</li>
+        <li>Advancing to the FA Cup final.</li>
+      </ul>
+    </li>
+    <li>Currently with <strong>PAC Academy</strong>, contributing to the team’s 4th-place standing in the Access Bank Division One league.</li>
+    <li><strong>Performance Highlights:</strong> 
+      <ul>
+        <li>Last season: 18 games, 10 clean sheets, 10 goals conceded.</li>
+        <li>Preseason: 5 games, 3 clean sheets.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+    
+    
+    
+    <section class="languages">
+      <h2>Languages</h2>
+      <ul>
+        <li>English</li>
+        <li>Fante</li>
+        <li>Twi</li>
+      </ul>
+    </section>
+    
+    <section class="references">
+      <h2>References</h2>
+      <ul>
+        <li><strong>Mensah Otabil</strong> – Coach | Phone: +233505392074</li>
+        <li><strong>Ekow David</strong> – Keeper’s Coach (PAC Academy) | Phone: +233247945938</li>
+      </ul>
+    </section>
+    
+    <img src="../images/IMG-20250924-WA0017.jpg" alt="Emmanuel Adjetey Arthur in action" class="profile-image" />
+    
+    <a href="/portfolios/Player9_port.html" class="back-button">← Go Back</a>
+
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- PDF Download Button -->
+    <div style="text-align:center; margin:20px;">
+      <button id="download-pdf" class="back-button">📥 Download as PDF</button>
+    </div>
+
+    <script>
+      document.getElementById("download-pdf").addEventListener("click", () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF("p", "pt", "a4");
+        const element = document.querySelector(".container");
+        doc.html(element, {
+          callback: function (pdf) {
+            pdf.save("Emmanuel_Adjetey_Arthur_Profile.pdf");
+          },
+          margin: [20, 20, 20, 20],
+          autoPaging: "text",
+          x: 0,
+          y: 0,
+          width: 555,
+          windowWidth: 900,
+          html2canvas: { scale: 1, useCORS: true, allowTaint: true, backgroundColor: '#ffffff' }
+        });
+      });
+    </script>
+
+  </div>
+</body>
+</html>

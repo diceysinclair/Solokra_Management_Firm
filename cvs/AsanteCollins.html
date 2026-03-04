@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asante Collins - Player Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+    section {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .back-button {
+      display: inline-block;
+      background: #ff7200;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background: #ff4500;
+      transform: scale(1.05);
+    }
+    .profile-image {
+      display: block;
+      max-width: 30%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Asante Collins - Player Profile</h1>
+    </header>
+    
+    <section class="personal-info">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Name:</strong> Asante Collins</li>
+        <li><strong>Date of Birth:</strong> 2nd June 2006</li>
+        <li><strong>Nationality:</strong> Ghanaian</li>
+        <li><strong>Position:</strong> Forward (Centre Forward / Winger)</li>
+        <li><strong>Management Email:</strong> solokramanagementfirm1@gmail.com</li>
+      </ul>
+    </section>
+
+    <section class="bio">
+      <h2>Player Bio</h2>
+      <p>
+        Asante Collins is a dynamic young Ghanaian forward with an eye for goal and excellent 
+        creative instincts. Born on 2nd June 2006, he is known for his pace, intelligent movement, 
+        and ability to influence games in the final third. His goal record across multiple clubs 
+        highlights his consistency and attacking threat.
+      </p>
+    </section>
+
+    <section class="attributes">
+      <h2>Player Attributes</h2>
+
+      <h3>Technical</h3>
+      <ul>
+        <li>Excellent dribbling and ball control</li>
+        <li>Accurate shooting (inside and outside the box)</li>
+        <li>Quality passing in buildup and final third</li>
+        <li>Dangerous in 1v1 situations</li>
+      </ul>
+
+      <h3>Physical</h3>
+      <ul>
+        <li>Impressive acceleration and sprint speed</li>
+        <li>Strong agility and quick directional changes</li>
+        <li>Good endurance</li>
+      </ul>
+
+      <h3>Tactical</h3>
+      <ul>
+        <li>Times attacking runs very well</li>
+        <li>Effective in pressing systems</li>
+        <li>Reads spaces and creates goal-scoring opportunities</li>
+        <li>Strong link-up play</li>
+      </ul>
+
+      <h3>Mental</h3>
+      <ul>
+        <li>Highly determined and confident</li>
+        <li>Composed in finishing situations</li>
+        <li>Strong competitive mentality</li>
+        <li>Team-first mindset</li>
+      </ul>
+    </section>
+
+    <section class="career-stats">
+      <h2>Career Statistics</h2>
+
+      <h3>Boako Nationals</h3>
+      <ul>
+        <li><strong>Games Played:</strong> 7</li>
+        <li><strong>Goals:</strong> 9</li>
+        <li><strong>Assists:</strong> 5</li>
+      </ul>
+
+      <h3>Memphis FC</h3>
+      <ul>
+        <li><strong>Games Played:</strong> 12</li>
+        <li><strong>Goals:</strong> 8</li>
+        <li><strong>Assists:</strong> 9</li>
+      </ul>
+
+      <h3>Kofi’s FC</h3>
+      <ul>
+        <li><strong>Games Played:</strong> 5</li>
+        <li><strong>Goals:</strong> 3</li>
+      </ul>
+
+      <h3>Total Career (All Clubs Combined)</h3>
+      <ul>
+        <li><strong>Games Played:</strong> 24</li>
+        <li><strong>Goals:</strong> 20</li>
+        <li><strong>Assists:</strong> 14</li>
+      </ul>
+
+      <p>A highly productive forward with a strong goal contribution record.</p>
+    </section>
+
+    <section class="contact">
+      <h2>Contact / Management</h2>
+      <p><strong>Solokra Management Firm</strong></p>
+      <p>📩 Email: solokramanagementfirm1@gmail.com</p>
+    </section>
+
+    <!-- Replace with player's image -->
+    <img src="../images/AsanteCollins.jpeg" alt="Asante Collins in action" class="profile-image" />
+
+    <a href="/portfolios/Player10_port.html" class="back-button">← Go Back</a>
+
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- PDF Download -->
+    <div style="text-align:center; margin:20px;">
+      <button id="download-pdf" class="back-button">📥 Download as PDF</button>
+    </div>
+
+    <script>
+      document.getElementById("download-pdf").addEventListener("click", () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF("p", "pt", "a4");
+
+        const element = document.querySelector(".container");
+
+        doc.html(element, {
+          callback: function (pdf) {
+            pdf.save("Asante_Collins_Profile.pdf");
+          },
+          margin: [20, 20, 20, 20],
+          autoPaging: "text",
+          x: 0,
+          y: 0,
+          width: 555,
+          windowWidth: 900,
+          html2canvas: {
+            scale: 1,
+            useCORS: true,
+            backgroundColor: '#ffffff'
+          }
+        });
+      });
+    </script>
+
+  </div>
+</body>
+</html>
