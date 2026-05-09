@@ -1,15 +1,11 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/main/index.html" },
-    { "source": "/cvs/Adjetey.html", "destination": "/cvs/Adjetey.html" },
-    { "source": "/cvs/AsanteCollins.html", "destination": "/cvs/AsanteCollins.html" },
-    { "source": "/cvs/AugustineSosu.html", "destination": "/cvs/AugustineSosu.html" },
-    { "source": "/cvs/ChristopherCV.html", "destination": "/cvs/ChristopherCV.html" },
-    { "source": "/cvs/Clifford.html", "destination": "/cvs/Clifford.html" },
-    { "source": "/cvs/Francisca.html", "destination": "/cvs/Francisca.html" },
-    { "source": "/cvs/Martha.html", "destination": "/cvs/Martha.html" },
-    { "source": "/cvs/Mensah_Kelvin.html", "destination": "/cvs/Mensah_Kelvin.html" },
-    { "source": "/cvs/Roland.html", "destination": "/cvs/Roland.html" },
-    { "source": "/cvs/Thomas.html", "destination": "/cvs/Thomas.html" }
+  "version": 2,
+  "routes": [
+    { "src": "/", "dest": "/main/index.html" },
+    { "src": "/cvs/(.*)", "dest": "/cvs/$1" },
+    { "src": "/portfolios/(.*)", "dest": "/portfolios/$1" },
+    { "src": "/main/(.*)", "dest": "/main/$1" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
+    { "src": "/Include/(.*)", "dest": "/Include/$1" }
   ]
 }
