@@ -2,11 +2,25 @@
   "version": 2,
   "routes": [
     { "src": "/", "dest": "/main/index.html" },
-    { "src": "/cvs/(.*)", "dest": "/cvs/$1" },
+    { "src": "/home", "dest": "/main/index.html" },
+    { "src": "/service", "dest": "/main/Service.html" },
+    { "src": "/players", "dest": "/main/Player.html" },
+    { "src": "/gallery", "dest": "/main/Gallery.html" },
+    { "src": "/contact", "dest": "/main/Contact.html" },
+    { "src": "/video", "dest": "/main/video.html" },
+    { "src": "/main/index.html", "dest": "/main/index.html" },
+    { "src": "/main/Service.html", "dest": "/main/Service.html" },
+    { "src": "/main/Player.html", "dest": "/main/Player.html" },
+    { "src": "/main/Gallery.html", "dest": "/main/Gallery.html" },
+    { "src": "/main/Contact.html", "dest": "/main/Contact.html" },
+    { "src": "/main/video.html", "dest": "/main/video.html" },
+    { "src": "/main/Player-portfolio.html", "dest": "/main/Player-portfolio.html" },
     { "src": "/portfolios/(.*)", "dest": "/portfolios/$1" },
-    { "src": "/main/(.*)", "dest": "/main/$1" },
+    { "src": "/cvs/(.*)", "dest": "/cvs/$1" },
     { "src": "/images/(.*)", "dest": "/images/$1" },
     { "src": "/Include/(.*)", "dest": "/Include/$1" },
+    { "src": "/(.*)\\.css", "dest": "/$1.css" },
+    { "src": "/(.*)\\.js", "dest": "/$1.js" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
