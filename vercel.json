@@ -6,6 +6,7 @@
     { "src": "/portfolios/(.*)", "dest": "/portfolios/$1" },
     { "src": "/main/(.*)", "dest": "/main/$1" },
     { "src": "/images/(.*)", "dest": "/images/$1" },
-    { "src": "/Include/(.*)", "dest": "/Include/$1" }
+    { "src": "/Include/(.*)", "dest": "/Include/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
